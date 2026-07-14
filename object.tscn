@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://vhqsw8dnxjbh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rfk7t"]
+
+[node name="Object" type="RigidBody2D" unique_id=117271720]
+disable_mode = 1
+collision_mask = 0
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2022805812]
+shape = SubResource("RectangleShape2D_rfk7t")
