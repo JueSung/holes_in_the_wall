@@ -111,9 +111,6 @@ func _physics_process(delta: float) -> void:
 
 	# var friction_factor := 1. # default 1 aka no friction
 	if is_on_wall():
-		if dashing:
-			dashing = false
-			dash_cooldown_timer = DASH_COOLDOWN
 			
 		if wall_jump_friction_timer > 0.0:
 			wall_jump_friction_timer = 0.0
@@ -122,6 +119,9 @@ func _physics_process(delta: float) -> void:
 			wall_clutching = true
 			coyote_timer = COYOTE_TIME # for jumping off wall
 			#TODO animation clutching wall type prep for jumping anyway
+			if dashing:
+				dashing = false
+				dash_cooldown_timer = DASH_COOLDOWN
 			has_dashed = false # TODO maybe turn off basically refreshes dash when clutching wall
 			
 			set_animation("wall_clutch", dir)
