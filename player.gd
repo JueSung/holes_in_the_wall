@@ -101,7 +101,7 @@ func _physics_process(delta: float) -> void:
 	if inputs["right"]:
 		dir.x += 1
 	
-	if !dashing && is_on_floor(): # don't do while dashing or while in air (for in air, will be gradual slow)
+	if !dashing && dash_pause_timer <= 0 && is_on_floor(): # don't do while dashing or while in air (for in air, will be gradual slow)
 		velocity.x = dir.x * HORIZONTAL_SPEED
 
 		if abs(velocity.x) > 0:
@@ -138,7 +138,7 @@ func _physics_process(delta: float) -> void:
 	
 
 	if !is_on_floor():
-		if !dashing && !dash_pause_timer >= 0: # don't apply gravity if dashing
+		if !dashing && dash_pause_timer <= 0: # don't apply gravity if dashing
 			if velocity.y < 0: # going up
 				if !inputs["up"] && !has_released_up: # runs moment released up while jumping - has_released_up gets set later
 					velocity.y /= 2.
