@@ -226,7 +226,7 @@ func _physics_process(delta: float) -> void:
 			has_dashed = true
 			dash_pause_timer = DASH_PAUSE_TIME
 			velocity = Vector2(0,0)
-			dash_velocity_to_be = DASH_SPEED * dir # overwites current velocity with dashing stuff
+			dash_velocity_to_be = DASH_SPEED * Vector2(dir).normalized() # overwites current velocity with dashing stuff
 			
 			set_animation("dash", dir)
 
