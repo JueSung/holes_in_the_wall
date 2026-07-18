@@ -36,7 +36,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"crouch",
-"speed": 5.0
+"speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -58,7 +58,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -82,9 +82,9 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("13_j5n4i")
 }],
-"loop": true,
+"loop": false,
 "name": &"jump",
-"speed": 5.0
+"speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -98,7 +98,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"land",
-"speed": 18.0
+"speed": 30.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -141,7 +141,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"wall_clutch",
-"speed": 5.0
+"speed": 0.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sh265"]
@@ -156,9 +156,8 @@ script = ExtResource("1_4flbx")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=743330017]
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_4flbx")
-animation = &"wall_clutch"
-offset = Vector2(724.333, -783)
-flip_h = true
+animation = &"land"
+offset = Vector2(-647, -776)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=141843366]
 shape = SubResource("RectangleShape2D_sh265")
@@ -166,3 +165,5 @@ shape = SubResource("RectangleShape2D_sh265")
 [node name="crouch_hitbox" type="CollisionShape2D" parent="." unique_id=270107187]
 position = Vector2(0, 12)
 shape = SubResource("RectangleShape2D_u1c27")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="animation_finished"]
