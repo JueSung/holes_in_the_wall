@@ -26,4 +26,12 @@ offset_bottom = 438.0
 theme_override_font_sizes/font_size = 80
 text = "This is a game yay"
 
+[node name="Label2" type="Label" parent="HUD" unique_id=256711910]
+offset_left = 1823.0
+offset_top = 16.0
+offset_right = 1863.0
+offset_bottom = 99.0
+theme_override_font_sizes/font_size = 60
+text = "0"
+
 [connection signal="pressed" from="HUD/Start" to="." method="start_game"]

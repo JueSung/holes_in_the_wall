@@ -6,6 +6,8 @@ var player : Player = null # set by ready
 var timer : float = 0.0
 var objects : Array = []
 
+var score := 0
+
 func _ready():
 	set_physics_process(false)
 	# set floor
@@ -17,6 +19,7 @@ func _ready():
 
 	$Floor/TextureRect.size = Vector2(2000,50)
 	$Floor/TextureRect.position = Vector2(-1000,-25)
+	$Floor.set_physics_process(false)
 
 	# set player - TODO move to start_game()
 	player = load("res://player.tscn").instantiate()
@@ -107,6 +110,7 @@ func _physics_process(delta: float) -> void:
 	obj_inst.get_node("TextureRect").position = Vector2(-75, -75)
 	obj_inst.global_position = Vector2(randf() * 1920, -200)
 	obj_inst.linear_velocity = Vector2(0, 300)
+	obj_inst.setUp(player)
 
 	objects.append(obj_inst)
 
@@ -120,7 +124,8 @@ func _physics_process(delta: float) -> void:
 
 
 func end_game():
-	$HUD.visible = true
+	$HUD/Start.visible = true
+	$HUD/Label.visible = true
 	set_physics_process(false)
 	player.set_physics_process(false)
 	$HUD/Label.text = "You died L"
@@ -130,7 +135,10 @@ func end_game():
 	objects = []
 
 func start_game():
-	$HUD.visible = false
+	$HUD/Start.visible = false
+	$HUD/Label.visible = false
+	score = 0
+	$HUD/Label2.text = "0"
 	$Floor/CollisionShape2D.disabled = false
 	$Floor.visible = true
 	player.global_position = Vector2(1920/2., 900)
@@ -138,6 +146,10 @@ func start_game():
 	five_seconds = 5.
 	total_time = 0.0
 	set_physics_process(true)
+
+func increment_score():
+	score += 1
+	$HUD/Label2.text = str(score)
 
 func remove_object(obj):
 	objects.erase(obj)
