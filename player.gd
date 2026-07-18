@@ -39,7 +39,8 @@ var COYOTE_TIME := .05 # you get this many seconds to after falling off edge or 
 var COYOTE_TIME_POST_DASH := 0.1 # for after dashing, need a bit more maybe keep TODO
 var coyote_timer := 0.
 
-var prev_dir := Vector2i(0,0) # for animation stuff
+var prev_nonzero_dir := Vector2i(0,0) # for animation stuff (specifically nonzero for horizontal)
+var prev_dir := Vector2i(0,0) # actual prev_dir
 var prev_velocity := Vector2(0,0)
 var land_finished := true # for moving from animation "land" to "idle" or "run"
 const LAND_SPEED_THRESHOLD := 800. # vertical speed cutoff to run "land" animation
@@ -90,7 +91,7 @@ func _physics_process(delta: float) -> void:
 			coyote_timer = COYOTE_TIME_POST_DASH
 			dash_cooldown_timer = DASH_COOLDOWN
 
-			set_animation("idle" if is_on_floor() else "jump", Vector2.ZERO)
+			set_animation("idle" if is_on_floor() else "jump", prev_nonzero_dir)
 
 	if coyote_timer > 0:
 		coyote_timer -= delta
@@ -262,23 +263,25 @@ func _physics_process(delta: float) -> void:
 	# 	"wall_clutch":
 	# 		$AnimatedSprite2D.scale = Vector2(0.1 * (1 - abs(velocity.y/6000.)), 0.1 * (1+abs(velocity.y / 6000.)))
 
-	if !dashing && !dash_pause_timer > 0 && dir.x != prev_dir.x:
+	if !dashing && !dash_pause_timer > 0 && dir.x != prev_nonzero_dir.x:
 		set_animation("", dir)
-	prev_dir = dir
+	if dir.x != 0:
+		prev_nonzero_dir = dir
 	prev_velocity = velocity
+	prev_dir = dir
 	move_and_slide()
 
 
 
 # dir is vector describing direction looking rn
 func set_animation(animation_name, dir):
+	
 	var animatedSprite2D = $AnimatedSprite2D
 	if animatedSprite2D.animation == animation_name:
 		return
 	animatedSprite2D.rotation = 0
 	if animation_name == "": # prob for setting dir or something
 		animation_name = animatedSprite2D.animation
-
 	match animation_name:
 		"idle":
 			if animatedSprite2D.animation == "land" && !land_finished:
@@ -383,9 +386,9 @@ func animation_finished() -> void:
 		return
 	land_finished = true
 	if prev_dir.x != 0:
-		set_animation("idle", prev_dir)
+		set_animation("idle", prev_nonzero_dir)
 	else:
-		set_animation("run", prev_dir)
+		set_animation("run", prev_nonzero_dir)
 	
 
 # for testing

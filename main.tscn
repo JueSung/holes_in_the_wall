@@ -7,3 +7,23 @@
 script = ExtResource("1_ig7tw")
 
 [node name="Floor" parent="." unique_id=117271720 instance=ExtResource("2_0xm2m")]
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=807961327]
+
+[node name="Start" type="Button" parent="HUD" unique_id=455966385]
+offset_left = 738.0
+offset_top = 540.0
+offset_right = 1182.0
+offset_bottom = 658.0
+theme_override_font_sizes/font_size = 80
+text = "Start Game"
+
+[node name="Label" type="Label" parent="HUD" unique_id=792982399]
+offset_left = 614.0
+offset_top = 328.0
+offset_right = 1307.0
+offset_bottom = 438.0
+theme_override_font_sizes/font_size = 80
+text = "This is a game yay"
+
+[connection signal="pressed" from="HUD/Start" to="." method="start_game"]
