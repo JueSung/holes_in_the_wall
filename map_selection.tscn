@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://udv1e2rap566"]
+
+[ext_resource type="Script" uid="uid://dtck6x36j5m0h" path="res://map_selection.gd" id="1_frvc2"]
+
+[node name="MapSelection" type="Node2D" unique_id=1382551998]
+script = ExtResource("1_frvc2")
+
+[node name="Map1_button" type="Button" parent="." unique_id=461531888]
+offset_left = 113.0
+offset_top = 588.0
+offset_right = 239.0
+offset_bottom = 651.0
+theme_override_font_sizes/font_size = 40
+toggle_mode = true
+text = "Map 1"
+
+[node name="Map2_button" type="Button" parent="." unique_id=416983512]
+offset_left = 1549.0
+offset_top = 592.0
+offset_right = 1675.0
+offset_bottom = 655.0
+theme_override_font_sizes/font_size = 40
+toggle_mode = true
+text = "Map 2"
+
+[connection signal="pressed" from="Map1_button" to="." method="map1"]
+[connection signal="pressed" from="Map2_button" to="." method="map2"]

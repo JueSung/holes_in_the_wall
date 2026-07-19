@@ -84,7 +84,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"jump",
-"speed": 0.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -150,13 +150,19 @@ size = Vector2(40, 74)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u1c27"]
 size = Vector2(40, 50)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qtqh7"]
+size = Vector2(42, 76)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2wuci"]
+size = Vector2(42, 52)
+
 [node name="Player" type="CharacterBody2D" unique_id=1196465888]
 script = ExtResource("1_4flbx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=743330017]
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_4flbx")
-animation = &"land"
+animation = &"jump"
 offset = Vector2(-647, -776)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=141843366]
@@ -165,5 +171,16 @@ shape = SubResource("RectangleShape2D_sh265")
 [node name="crouch_hitbox" type="CollisionShape2D" parent="." unique_id=270107187]
 position = Vector2(0, 12)
 shape = SubResource("RectangleShape2D_u1c27")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1536657127]
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=299771886]
+shape = SubResource("RectangleShape2D_qtqh7")
+
+[node name="crouch_hitbox" type="CollisionShape2D" parent="Hurtbox" unique_id=1794863547]
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_2wuci")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="animation_finished"]

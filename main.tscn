@@ -1,16 +1,14 @@
 [gd_scene format=3 uid="uid://bfk4aa2pvcopf"]
 
 [ext_resource type="Script" uid="uid://isfw8m4u3wti" path="res://main.gd" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://vhqsw8dnxjbh" path="res://object.tscn" id="2_0xm2m"]
 
 [node name="Main" type="Node" unique_id=1455378392]
 script = ExtResource("1_ig7tw")
 
-[node name="Floor" parent="." unique_id=117271720 instance=ExtResource("2_0xm2m")]
-
 [node name="HUD" type="CanvasLayer" parent="." unique_id=807961327]
 
 [node name="Start" type="Button" parent="HUD" unique_id=455966385]
+visible = false
 offset_left = 738.0
 offset_top = 540.0
 offset_right = 1182.0
@@ -18,15 +16,16 @@ offset_bottom = 658.0
 theme_override_font_sizes/font_size = 80
 text = "Start Game"
 
-[node name="Label" type="Label" parent="HUD" unique_id=792982399]
+[node name="Title" type="Label" parent="HUD" unique_id=792982399]
 offset_left = 614.0
 offset_top = 328.0
 offset_right = 1307.0
 offset_bottom = 438.0
 theme_override_font_sizes/font_size = 80
-text = "This is a game yay"
+text = "Choose Game mode or something"
 
 [node name="Label2" type="Label" parent="HUD" unique_id=256711910]
+visible = false
 offset_left = 1823.0
 offset_top = 16.0
 offset_right = 1863.0
@@ -34,4 +33,22 @@ offset_bottom = 99.0
 theme_override_font_sizes/font_size = 60
 text = "0"
 
+[node name="Tag" type="Button" parent="HUD" unique_id=715432679]
+offset_left = 553.0
+offset_top = 533.0
+offset_right = 697.0
+offset_bottom = 651.0
+theme_override_font_sizes/font_size = 80
+text = "Tag"
+
+[node name="FreePlay" type="Button" parent="HUD" unique_id=245919831]
+offset_left = 1171.0
+offset_top = 527.0
+offset_right = 1530.0
+offset_bottom = 645.0
+theme_override_font_sizes/font_size = 80
+text = "Free Play"
+
 [connection signal="pressed" from="HUD/Start" to="." method="start_game"]
+[connection signal="pressed" from="HUD/Tag" to="." method="tag_chosen"]
+[connection signal="pressed" from="HUD/FreePlay" to="." method="free_play"]

@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://cww5qrci47g4c"]
+
+[ext_resource type="Script" uid="uid://c7ishdylqeelv" path="res://game_modes/tag.gd" id="1_ag601"]
+[ext_resource type="PackedScene" uid="uid://udv1e2rap566" path="res://map_selection.tscn" id="2_gc6h8"]
+[ext_resource type="PackedScene" uid="uid://odb7rfkrvt08" path="res://player.tscn" id="2_vkb6s"]
+
+[node name="Tag" type="Node2D" unique_id=1844737329]
+script = ExtResource("1_ag601")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=705392288]
+
+[node name="TwoPlayers" type="Button" parent="HUD" unique_id=775215674]
+offset_left = 826.0
+offset_top = 400.0
+offset_right = 1094.0
+offset_bottom = 491.0
+theme_override_font_sizes/font_size = 60
+toggle_mode = true
+text = "2 Players"
+
+[node name="Label" type="Label" parent="HUD" unique_id=1536461111]
+offset_left = 460.0
+offset_top = 150.0
+offset_right = 1460.0
+offset_bottom = 250.0
+pivot_offset = Vector2(0, 1)
+theme_override_font_sizes/font_size = 60
+text = "These are words"
+horizontal_alignment = 1
+
+[node name="Start_Game" type="Button" parent="HUD" unique_id=114124754]
+offset_left = 793.0
+offset_top = 700.0
+offset_right = 1128.0
+offset_bottom = 791.0
+theme_override_font_sizes/font_size = 60
+text = "Start Game"
+
+[node name="MapSelection" parent="HUD" unique_id=1382551998 instance=ExtResource("2_gc6h8")]
+
+[node name="GameHUD" type="CanvasLayer" parent="." unique_id=2127309582]
+
+[node name="Pause" type="Button" parent="GameHUD" unique_id=1196165223]
+offset_left = 1840.0
+offset_top = 10.0
+offset_right = 1895.0
+offset_bottom = 41.0
+text = "Pause"
+
+[node name="Timer" type="Label" parent="GameHUD" unique_id=2081461054]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 79.0
+offset_bottom = 93.0
+theme_override_font_sizes/font_size = 60
+text = "60"
+
+[node name="Player1" parent="." unique_id=1196465888 instance=ExtResource("2_vkb6s")]
+
+[node name="Player2" parent="." unique_id=351649736 instance=ExtResource("2_vkb6s")]
+player_num = 2
+
+[connection signal="pressed" from="HUD/TwoPlayers" to="." method="two_players"]
+[connection signal="pressed" from="HUD/Start_Game" to="." method="start_game"]
+[connection signal="pressed" from="GameHUD/Pause" to="." method="pause"]

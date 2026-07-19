@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://blw2sn46av51w"]
+
+[ext_resource type="Script" uid="uid://p1hfw8ym1f6b" path="res://game_modes/free_play.gd" id="1_fevcf"]
+[ext_resource type="PackedScene" uid="uid://udv1e2rap566" path="res://map_selection.tscn" id="2_ojmmc"]
+[ext_resource type="PackedScene" uid="uid://odb7rfkrvt08" path="res://player.tscn" id="3_2b751"]
+
+[node name="FreePlay" type="Node2D" unique_id=75456858]
+script = ExtResource("1_fevcf")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=2038001353]
+
+[node name="Label" type="Label" parent="HUD" unique_id=2028781610]
+offset_left = 675.0
+offset_top = 200.0
+offset_right = 1246.0
+offset_bottom = 283.0
+theme_override_font_sizes/font_size = 60
+text = "YO yo what up nerd"
+
+[node name="MapSelection" parent="HUD" unique_id=1382551998 instance=ExtResource("2_ojmmc")]
+
+[node name="Start" type="Button" parent="HUD" unique_id=270003505]
+offset_left = 838.0
+offset_top = 712.0
+offset_right = 964.0
+offset_bottom = 789.0
+theme_override_font_sizes/font_size = 50
+text = "Start"
+
+[node name="Player" parent="." unique_id=1196465888 instance=ExtResource("3_2b751")]
+position = Vector2(-187, -141)
+
+[connection signal="pressed" from="HUD/Start" to="." method="start"]

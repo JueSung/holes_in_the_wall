@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Player
 
+@export var player_num : int = 1
+
 var gravity := 1875.
 # const FRICTION_FACTOR_WALL = .05 # slow descent while on wall
 const HORIZONTAL_SPEED: = 400.
@@ -46,13 +48,7 @@ var land_finished := true # for moving from animation "land" to "idle" or "run"
 const LAND_SPEED_THRESHOLD := 800. # vertical speed cutoff to run "land" animation
 
 
-enum INPUTS {
-	up,
-	down,
-	left,
-	right,
-	dash,
-}
+
 
 var inputs := {
 	"up" : false,
@@ -65,12 +61,17 @@ var inputs := {
 }
 
 func _ready() -> void:
-	pass
+	$crouch_hitbox.disabled = true
+	$Hurtbox/crouch_hitbox.disabled = true
+	set_physics_process(false)
+	set_process(false)
+
+
 
 # used for taking in inputs
 func _process(_delta):
-	for input in INPUTS:
-		if Input.is_action_pressed(input):
+	for input in inputs:
+		if Input.is_action_pressed(input+str(player_num)): # maps it to correct map thing or whatever in input map
 			inputs[input] = true
 		else:
 			inputs[input] = false
@@ -294,6 +295,8 @@ func set_animation(animation_name, dir):
 			animatedSprite2D.scale = Vector2(0.6, 0.6)
 			$CollisionShape2D.disabled = false
 			$crouch_hitbox.disabled = true
+			$Hurtbox/CollisionShape2D.disabled = false
+			$Hurtbox/crouch_hitbox.disabled = true
 			animatedSprite2D.stop()
 		"crouch":
 			animatedSprite2D.animation = "crouch"
@@ -304,6 +307,8 @@ func set_animation(animation_name, dir):
 			animatedSprite2D.scale = Vector2(0.6, 0.6)
 			$CollisionShape2D.disabled = true
 			$crouch_hitbox.disabled = false
+			$Hurtbox/CollisionShape2D.disabled = true
+			$Hurtbox/crouch_hitbox.disabled = false
 			animatedSprite2D.stop()
 		"run":
 			if animatedSprite2D.animation == "land" && !land_finished:
@@ -320,6 +325,8 @@ func set_animation(animation_name, dir):
 
 			$CollisionShape2D.disabled = false
 			$crouch_hitbox.disabled = true
+			$Hurtbox/CollisionShape2D.disabled = false
+			$Hurtbox/crouch_hitbox.disabled = true
 
 			animatedSprite2D.play()
 		"dash":
@@ -330,6 +337,8 @@ func set_animation(animation_name, dir):
 			animatedSprite2D.rotation = atan2(dir.y, dir.x) + PI/2.
 			$CollisionShape2D.disabled = false
 			$crouch_hitbox.disabled = true
+			$Hurtbox/CollisionShape2D.disabled = false
+			$Hurtbox/crouch_hitbox.disabled = true
 
 			animatedSprite2D.play()
 		"wall_clutch":
@@ -345,10 +354,12 @@ func set_animation(animation_name, dir):
 
 			$CollisionShape2D.disabled = false
 			$crouch_hitbox.disabled = true
+			$Hurtbox/CollisionShape2D.disabled = false
+			$Hurtbox/crouch_hitbox.disabled = true
 			animatedSprite2D.stop()
 		"jump":
-			pass
-			animatedSprite2D.animation = "jump"
+			if animatedSprite2D.animation != "jump":
+				animatedSprite2D.animation = "jump"
 			var using_dir = dir
 			if using_dir.x == 0:
 				using_dir.x = 1 if animatedSprite2D.flip_h == false else -1
@@ -360,7 +371,12 @@ func set_animation(animation_name, dir):
 				animatedSprite2D.flip_h = true
 				animatedSprite2D.offset = Vector2(646., -794.)
 				animatedSprite2D.scale = Vector2(0.6, 0.6)
-			animatedSprite2D.stop()
+			if animatedSprite2D.is_playing():
+				animatedSprite2D.stop()
+			$CollisionShape2D.disabled = false
+			$crouch_hitbox.disabled = true
+			$Hurtbox/CollisionShape2D.disabled = false
+			$Hurtbox/crouch_hitbox.disabled = true
 		"land":
 			animatedSprite2D.animation = "land"
 			var using_dir = dir
@@ -375,6 +391,8 @@ func set_animation(animation_name, dir):
 			animatedSprite2D.scale = Vector2(0.6, 0.6)
 			$CollisionShape2D.disabled = false
 			$crouch_hitbox.disabled = true
+			$Hurtbox/CollisionShape2D.disabled = false
+			$Hurtbox/crouch_hitbox.disabled = true
 			land_finished = false
 
 			animatedSprite2D.play()

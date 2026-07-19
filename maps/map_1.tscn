@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://b8r2vdvarxnfi"]
+
+[ext_resource type="PackedScene" uid="uid://vhqsw8dnxjbh" path="res://object.tscn" id="1_p5fey"]
+
+[node name="Map1" type="Node2D" unique_id=1020823942]
+
+[node name="Floor" parent="." unique_id=117271720 instance=ExtResource("1_p5fey")]
+position = Vector2(960, 1060)
+platform_shape = Vector2(1920, 40)
+
+[node name="Ceiling" parent="." unique_id=580381151 instance=ExtResource("1_p5fey")]
+position = Vector2(960, 20)
+platform_shape = Vector2(1920, 40)
+
+[node name="Left_Wall" parent="." unique_id=791566092 instance=ExtResource("1_p5fey")]
+position = Vector2(0, 540)
+platform_shape = Vector2(40, 1080)
+
+[node name="Right_Wall" parent="." unique_id=403404075 instance=ExtResource("1_p5fey")]
+position = Vector2(1920, 540)
+platform_shape = Vector2(40, 1080)
+
+[node name="Top1" parent="." unique_id=32845906 instance=ExtResource("1_p5fey")]
+position = Vector2(480, 359.64)
+platform_shape = Vector2(300, 75)
+
+[node name="Top2" parent="." unique_id=1753613222 instance=ExtResource("1_p5fey")]
+position = Vector2(960, 359.64)
+platform_shape = Vector2(50, 300)
+
+[node name="Top3" parent="." unique_id=2038543539 instance=ExtResource("1_p5fey")]
+position = Vector2(1440, 359.64)
+platform_shape = Vector2(300, 50)
+
+[node name="Middle1" parent="." unique_id=1329542030 instance=ExtResource("1_p5fey")]
+position = Vector2(480, 719.28)
+platform_shape = Vector2(50, 300)
+
+[node name="Middle2" parent="." unique_id=798922091 instance=ExtResource("1_p5fey")]
+position = Vector2(960, 719.28)
+platform_shape = Vector2(300, 50)
+
+[node name="Middle3" parent="." unique_id=472746993 instance=ExtResource("1_p5fey")]
+position = Vector2(1440, 719.28)
+platform_shape = Vector2(50, 300)
