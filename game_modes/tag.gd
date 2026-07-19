@@ -7,8 +7,8 @@ var paused := false
 
 var who_it := 0 # 1 or 2 - set by start_game
 
-var timer := 3. # 1 minute game
-const GAME_LENGTH := 3.
+var timer := 60. # 1 minute game
+const GAME_LENGTH := 60.
 var tag_cooldown := .1
 const TAG_COOLDOWN := .1
 
