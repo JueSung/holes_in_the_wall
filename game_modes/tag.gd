@@ -9,8 +9,10 @@ var who_it := 0 # 1 or 2 - set by start_game
 
 var timer := 60. # 1 minute game
 const GAME_LENGTH := 60.
-var tag_cooldown := .1
-const TAG_COOLDOWN := .1
+var tag_cooldown := .2
+const TAG_COOLDOWN := .2
+
+@onready var it_pointer = $it_pointer
 
 
 func _ready() -> void:
@@ -21,6 +23,12 @@ func _ready() -> void:
 	set_physics_process(false)
 	$Player1/Hurtbox.connect("area_entered", area_entered)
 	$Player2/Hurtbox.connect("area_entered", area_entered)
+	$Player1.visible = false
+	$Player2.visible = false
+	$Player1.set_color("blue")
+	$Player2.set_color("green")
+
+	$it_pointer.visible = false
 
 
 
@@ -54,14 +62,17 @@ func start_game():
 	$Player1.set_process(true)
 	$Player2.set_physics_process(true)
 	$Player2.set_process(true)
+	$Player1.visible = true
+	$Player2.visible = true
+
+	it_pointer.visible = true
 
 	who_it = int(randf() * 2) + 1
 	if who_it == 1:
-		$Player1.modulate = Color(1, .4, .4, 1)
-		$Player2.modulate = Color(1, 1, 1, 1)
+		it_pointer.reparent($Player1)
 	else:
-		$Player1.modulate = Color(1, 1, 1, 1)
-		$Player2.modulate = Color(1, .4, .4, 1)
+		it_pointer.reparent($Player2)
+	it_pointer.position = Vector2(-7.5, -70)
    
 	timer = GAME_LENGTH
 	set_physics_process(true)
@@ -95,15 +106,12 @@ func area_entered(area):
 		# swap whos it
 		if who_it == 1:
 			who_it = 2
-			$Player1.modulate = Color(1, 1, 1, 1)
-			$Player2.modulate = Color(1, .4, .4, 1)
+			it_pointer.reparent($Player2)
 		else:
 			who_it = 1
-			$Player1.modulate = Color(1, .4, .4, 1)
-			$Player2.modulate = Color(1, 1, 1, 1)
+			it_pointer.reparent($Player1)
+		it_pointer.position = Vector2(-7.5, -70)
 		tag_cooldown = TAG_COOLDOWN
-
-
 
 
 
@@ -124,3 +132,7 @@ func pause() -> void:
 		$Player1.set_process(true)
 		$Player2.set_process(true)
 		$GameHUD/Pause.text = "Pause"
+
+
+func back_to_main() -> void:
+	get_parent().back()

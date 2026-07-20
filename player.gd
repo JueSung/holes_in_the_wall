@@ -47,7 +47,7 @@ var prev_velocity := Vector2(0,0)
 var land_finished := true # for moving from animation "land" to "idle" or "run"
 const LAND_SPEED_THRESHOLD := 800. # vertical speed cutoff to run "land" animation
 
-
+var animatedSprite = null
 
 
 var inputs := {
@@ -66,6 +66,32 @@ func _ready() -> void:
 	set_physics_process(false)
 	set_process(false)
 
+	$AnimatedSprite2D.visible = false
+	$AnimatedSprite2D_blue.visible = false
+	$AnimatedSprite2D_green.visible = false
+	$AnimatedSprite2D_red.visible = false
+	set_color("white")
+	set_animation("idle", Vector2i(0,0))
+
+func set_color(color: String):
+	if animatedSprite:
+		animatedSprite.visible = false
+	match color:
+		"white":
+			animatedSprite = $AnimatedSprite2D
+			animatedSprite.visible = true
+		"blue":
+			animatedSprite = $AnimatedSprite2D_blue
+			animatedSprite.visible = true
+		"green":
+			animatedSprite = $AnimatedSprite2D_green
+			animatedSprite.visible = true
+		"red":
+			animatedSprite = $AnimatedSprite2D_red
+			animatedSprite.visible = true
+		_:
+			print("idk this player color")
+			
 
 
 # used for taking in inputs
@@ -116,7 +142,7 @@ func _physics_process(delta: float) -> void:
 		if abs(velocity.x) > 0:
 			set_animation("run", dir)
 		else:
-			if $AnimatedSprite2D.animation != "idle":
+			if animatedSprite.animation != "idle":
 				set_animation("idle", dir)
 
 	# WALL CLUTCHING------------------------------------------------------------------------------------------------------------------------------
@@ -138,11 +164,11 @@ func _physics_process(delta: float) -> void:
 			set_animation("wall_clutch", dir)
 		else:
 			wall_clutching = false
-			if $AnimatedSprite2D.animation == "wall_clutch":
+			if animatedSprite.animation == "wall_clutch":
 				set_animation("idle" if is_on_floor() else "jump", dir)
 	else:
 		wall_clutching = false
-		if $AnimatedSprite2D.animation == "wall_clutch":
+		if animatedSprite.animation == "wall_clutch":
 			set_animation("idle" if is_on_floor() else "jump", dir)
 		
 	
@@ -252,17 +278,17 @@ func _physics_process(delta: float) -> void:
 		velocity.y = MAX_VERTICAL_SPEED
 
 	# # TODO idk if like maybe get rid of
-	if $AnimatedSprite2D.animation == "jump":
-		$AnimatedSprite2D.frame = int(abs(velocity.y)**2. / (MAX_VERTICAL_SPEED**2.) * 4)
-		# $AnimatedSprite2D.scale = Vector2(0.6 * (1-abs(velocity.y/6000.)), 0.6 * (1+abs(velocity.y / 6000.)))
+	if animatedSprite.animation == "jump":
+		animatedSprite.frame = int(abs(velocity.y)**2. / (MAX_VERTICAL_SPEED**2.) * 4)
+		# animatedSprite.scale = Vector2(0.6 * (1-abs(velocity.y/6000.)), 0.6 * (1+abs(velocity.y / 6000.)))
 	# 	"idle":
-	# 		$AnimatedSprite2D.scale = Vector2(0.6 * (1 - abs(velocity.y/6000.)), 0.6 * (1+abs(velocity.y / 6000.)))
+	# 		animatedSprite.scale = Vector2(0.6 * (1 - abs(velocity.y/6000.)), 0.6 * (1+abs(velocity.y / 6000.)))
 	# 	"run":
-	# 		$AnimatedSprite2D.scale = Vector2(0.6 * (1 - abs(velocity.y/6000.)), 0.6 * (1+abs(velocity.y / 6000.)))
+	# 		animatedSprite.scale = Vector2(0.6 * (1 - abs(velocity.y/6000.)), 0.6 * (1+abs(velocity.y / 6000.)))
 	# 	"dash":
-	# 		$AnimatedSprite2D.scale = Vector2(0.6 * (1 - abs(velocity.y/6000.)), 0.6 * (1+abs(velocity.y / 6000.)))
+	# 		animatedSprite.scale = Vector2(0.6 * (1 - abs(velocity.y/6000.)), 0.6 * (1+abs(velocity.y / 6000.)))
 	# 	"wall_clutch":
-	# 		$AnimatedSprite2D.scale = Vector2(0.1 * (1 - abs(velocity.y/6000.)), 0.1 * (1+abs(velocity.y / 6000.)))
+	# 		animatedSprite.scale = Vector2(0.1 * (1 - abs(velocity.y/6000.)), 0.1 * (1+abs(velocity.y / 6000.)))
 
 	if !dashing && !dash_pause_timer > 0 && dir.x != prev_nonzero_dir.x:
 		set_animation("", dir)
@@ -277,130 +303,129 @@ func _physics_process(delta: float) -> void:
 # dir is vector describing direction looking rn
 func set_animation(animation_name, dir):
 	
-	var animatedSprite2D = $AnimatedSprite2D
-	if animatedSprite2D.animation == animation_name:
+	if animatedSprite.animation == animation_name:
 		return
-	animatedSprite2D.rotation = 0
+	animatedSprite.rotation = 0
 	if animation_name == "": # prob for setting dir or something
-		animation_name = animatedSprite2D.animation
+		animation_name = animatedSprite.animation
 	match animation_name:
 		"idle":
-			if animatedSprite2D.animation == "land" && !land_finished:
+			if animatedSprite.animation == "land" && !land_finished:
 				return # allow landing animation prior to idle animation
-			animatedSprite2D.animation = "idle"
-			if animatedSprite2D.flip_h == false:
-				animatedSprite2D.offset = Vector2(-340., -1007)
+			animatedSprite.animation = "idle"
+			if animatedSprite.flip_h == false:
+				animatedSprite.offset = Vector2(-2., -149.)
 			else:
-				animatedSprite2D.offset = Vector2(340., -1007)
-			animatedSprite2D.scale = Vector2(0.6, 0.6)
+				animatedSprite.offset = Vector2(2., -149.)
+			animatedSprite.scale = Vector2(0.6, 0.6)
 			$CollisionShape2D.disabled = false
 			$crouch_hitbox.disabled = true
 			$Hurtbox/CollisionShape2D.disabled = false
 			$Hurtbox/crouch_hitbox.disabled = true
-			animatedSprite2D.stop()
+			animatedSprite.stop()
 		"crouch":
-			animatedSprite2D.animation = "crouch"
-			if animatedSprite2D.flip_h == false:
-				animatedSprite2D.offset = Vector2(-341., -967.)
+			animatedSprite.animation = "crouch"
+			if animatedSprite.flip_h == false:
+				animatedSprite.offset = Vector2(-3., -110.)
 			else:
-				animatedSprite2D.offset = Vector2(341., -967.)
-			animatedSprite2D.scale = Vector2(0.6, 0.6)
+				animatedSprite.offset = Vector2(3., -110.)
+			animatedSprite.scale = Vector2(0.6, 0.6)
 			$CollisionShape2D.disabled = true
 			$crouch_hitbox.disabled = false
 			$Hurtbox/CollisionShape2D.disabled = true
 			$Hurtbox/crouch_hitbox.disabled = false
-			animatedSprite2D.stop()
+			animatedSprite.stop()
 		"run":
-			if animatedSprite2D.animation == "land" && !land_finished:
+			if animatedSprite.animation == "land" && !land_finished:
 				return # allow landing animation prior to run animation
-			animatedSprite2D.animation = "run"
+			animatedSprite.animation = "run"
 			if dir.x > 0:
-				animatedSprite2D.flip_h = false
-				animatedSprite2D.offset = Vector2(-496., -1007.)
-				animatedSprite2D.scale = Vector2(0.6, 0.6)
+				animatedSprite.flip_h = false
+				animatedSprite.offset = Vector2(7., -149.)
+				animatedSprite.scale = Vector2(0.6, 0.6)
 			else:
-				animatedSprite2D.flip_h = true
-				animatedSprite2D.offset = Vector2(496., -1007.)
-				animatedSprite2D.scale = Vector2(0.6, 0.6)
+				animatedSprite.flip_h = true
+				animatedSprite.offset = Vector2(-7., -149.)
+				animatedSprite.scale = Vector2(0.6, 0.6)
 
 			$CollisionShape2D.disabled = false
 			$crouch_hitbox.disabled = true
 			$Hurtbox/CollisionShape2D.disabled = false
 			$Hurtbox/crouch_hitbox.disabled = true
 
-			animatedSprite2D.play()
+			animatedSprite.play()
 		"dash":
-			animatedSprite2D.animation = "dash"
-			animatedSprite2D.flip_h = false
-			animatedSprite2D.offset = Vector2(-646., -785.)
-			animatedSprite2D.scale = Vector2(0.6, 0.6)
-			animatedSprite2D.rotation = atan2(dir.y, dir.x) + PI/2.
+			animatedSprite.animation = "dash"
+			animatedSprite.flip_h = false
+			animatedSprite.offset = Vector2(7., 30.)
+			animatedSprite.scale = Vector2(0.6, 0.6)
+			animatedSprite.rotation = atan2(dir.y, dir.x) + PI/2.
 			$CollisionShape2D.disabled = false
 			$crouch_hitbox.disabled = true
 			$Hurtbox/CollisionShape2D.disabled = false
 			$Hurtbox/crouch_hitbox.disabled = true
 
-			animatedSprite2D.play()
+			animatedSprite.play()
 		"wall_clutch":
-			animatedSprite2D.animation = "wall_clutch"
+			animatedSprite.animation = "wall_clutch"
 			if dir.x > 0:
-				animatedSprite2D.flip_h = false
-				animatedSprite2D.offset = Vector2(-724., -783.)
-				animatedSprite2D.scale = Vector2(0.6, 0.6)
+				animatedSprite.flip_h = false
+				animatedSprite.offset = Vector2(-80., 18)
+				animatedSprite.scale = Vector2(0.6, 0.6)
 			else:
-				animatedSprite2D.flip_h = true
-				animatedSprite2D.offset = Vector2(724., -783.)
-				animatedSprite2D.scale = Vector2(0.6, 0.6)
+				animatedSprite.flip_h = true
+				animatedSprite.offset = Vector2(80., 18)
+				animatedSprite.scale = Vector2(0.6, 0.6)
 
 			$CollisionShape2D.disabled = false
 			$crouch_hitbox.disabled = true
 			$Hurtbox/CollisionShape2D.disabled = false
 			$Hurtbox/crouch_hitbox.disabled = true
-			animatedSprite2D.stop()
+			animatedSprite.stop()
 		"jump":
-			if animatedSprite2D.animation != "jump":
-				animatedSprite2D.animation = "jump"
+			if animatedSprite.animation != "jump":
+				animatedSprite.animation = "jump"
 			var using_dir = dir
 			if using_dir.x == 0:
-				using_dir.x = 1 if animatedSprite2D.flip_h == false else -1
+				using_dir.x = 1 if animatedSprite.flip_h == false else -1
 			if using_dir.x > 0:
-				animatedSprite2D.flip_h = false
-				animatedSprite2D.offset = Vector2(-646., -794.)
-				animatedSprite2D.scale = Vector2(0.6, 0.6)
+				animatedSprite.flip_h = false
+				animatedSprite.offset = Vector2(-8., -32.)
+				animatedSprite.scale = Vector2(0.6, 0.6)
 			else:
-				animatedSprite2D.flip_h = true
-				animatedSprite2D.offset = Vector2(646., -794.)
-				animatedSprite2D.scale = Vector2(0.6, 0.6)
-			if animatedSprite2D.is_playing():
-				animatedSprite2D.stop()
+				animatedSprite.flip_h = true
+				animatedSprite.offset = Vector2(8., -32.)
+				animatedSprite.scale = Vector2(0.6, 0.6)
+			if animatedSprite.is_playing():
+				animatedSprite.stop()
 			$CollisionShape2D.disabled = false
 			$crouch_hitbox.disabled = true
 			$Hurtbox/CollisionShape2D.disabled = false
 			$Hurtbox/crouch_hitbox.disabled = true
 		"land":
-			animatedSprite2D.animation = "land"
+			animatedSprite.animation = "land"
 			var using_dir = dir
 			if using_dir.x == 0:
-				using_dir.x = 1 if animatedSprite2D.flip_h == false else -1
+				using_dir.x = 1 if animatedSprite.flip_h == false else -1
 			if using_dir.x > 0:
-				animatedSprite2D.flip_h = false
-				animatedSprite2D.offset = Vector2(-647., -776.)
+				animatedSprite.flip_h = false
+				animatedSprite.offset = Vector2(-0., 23.)
 			else:
-				animatedSprite2D.flip_h = true
-				animatedSprite2D.offset = Vector2(647., -776.)
-			animatedSprite2D.scale = Vector2(0.6, 0.6)
+				animatedSprite.flip_h = true
+				animatedSprite.offset = Vector2(0., 23.)
+			animatedSprite.scale = Vector2(0.6, 0.6)
 			$CollisionShape2D.disabled = false
 			$crouch_hitbox.disabled = true
 			$Hurtbox/CollisionShape2D.disabled = false
 			$Hurtbox/crouch_hitbox.disabled = true
 			land_finished = false
 
-			animatedSprite2D.play()
+			animatedSprite.play()
 	
 
 
 func animation_finished() -> void:
-	if $AnimatedSprite2D.animation != "land":
+	if animatedSprite.animation != "land":
 		return
 	land_finished = true
 	if prev_dir.x != 0:

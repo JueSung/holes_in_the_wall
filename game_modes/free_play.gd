@@ -4,21 +4,37 @@ class_name FreePlay
 var map = null
 
 func _ready() -> void:
-    $Player.set_physics_process(false)
-    $Player.set_process(false)
+	$Player.set_physics_process(false)
+	$Player.set_process(false)
+	$Player.visible = false
+	$GameHUD.visible = false
 
 func start() -> void:
-    var chosen_map = $HUD/MapSelection.get_chosen_map()
-    if chosen_map == "":
-        $HUD/Label.text = "Choose Map"
-        return
-    
-    map = load(chosen_map).instantiate()
-    add_child(map)
-    $HUD.visible = false
-    $Player.global_position = Vector2(1920/2., 800)
-    $Player.set_physics_process(true)
-    $Player.set_process(true)
+	var chosen_map = $HUD/MapSelection.get_chosen_map()
+	if chosen_map == "":
+		$HUD/Label.text = "Choose Map"
+		return
+	
+	map = load(chosen_map).instantiate()
+	add_child(map)
+	$HUD.visible = false
+	$GameHUD.visible = true
+	$Player.global_position = Vector2(1920/2., 800)
+	$Player.set_physics_process(true)
+	$Player.set_process(true)
+	$Player.visible = true
 
 
 
+func back():
+	$GameHUD.visible = false
+	$HUD.visible = true
+	$Player.set_physics_process(false)
+	$Player.set_process(false)
+	$Player.visible = false
+	if is_instance_valid(map):
+		map.queue_free()
+	map = null
+
+func back_to_main() -> void:
+	get_parent().back()

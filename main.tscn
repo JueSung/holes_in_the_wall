@@ -49,6 +49,15 @@ offset_bottom = 645.0
 theme_override_font_sizes/font_size = 80
 text = "Free Play"
 
+[node name="Dodge" type="Button" parent="HUD" unique_id=160569346]
+offset_left = 822.0
+offset_top = 784.0
+offset_right = 1078.0
+offset_bottom = 902.0
+theme_override_font_sizes/font_size = 80
+text = "Dodge"
+
 [connection signal="pressed" from="HUD/Start" to="." method="start_game"]
 [connection signal="pressed" from="HUD/Tag" to="." method="tag_chosen"]
 [connection signal="pressed" from="HUD/FreePlay" to="." method="free_play"]
+[connection signal="pressed" from="HUD/Dodge" to="." method="dodge"]

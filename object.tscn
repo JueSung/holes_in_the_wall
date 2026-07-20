@@ -7,16 +7,19 @@ size = Vector2(150, 150)
 
 [node name="Object" type="RigidBody2D" unique_id=117271720]
 disable_mode = 1
+collision_layer = 129
 collision_mask = 0
 gravity_scale = 0.0
+linear_damp_mode = 1
+angular_damp_mode = 1
 script = ExtResource("1_l2ofb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2022805812]
 shape = SubResource("RectangleShape2D_rfk7t")
 
-[node name="TextureRect" type="ColorRect" parent="." unique_id=836313915]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=836313915]
 offset_left = -75.0
 offset_top = -75.0
 offset_right = 75.0
 offset_bottom = 75.0
-color = Color(0.28240767, 0.28240743, 0.28240746, 1)
+color = Color(0.28235295, 0.28235295, 0.28235295, 1)

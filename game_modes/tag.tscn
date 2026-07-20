@@ -4,10 +4,25 @@
 [ext_resource type="PackedScene" uid="uid://udv1e2rap566" path="res://map_selection.tscn" id="2_gc6h8"]
 [ext_resource type="PackedScene" uid="uid://odb7rfkrvt08" path="res://player.tscn" id="2_vkb6s"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gc6h8"]
+bg_color = Color(1, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.2599022, 3.2939482e-07, 8.4228816e-08, 1)
+
 [node name="Tag" type="Node2D" unique_id=1844737329]
 script = ExtResource("1_ag601")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=705392288]
+
+[node name="back_to_main" type="Button" parent="HUD" unique_id=663637895]
+offset_left = 257.0
+offset_top = 194.0
+offset_right = 329.0
+offset_bottom = 258.0
+text = "back"
 
 [node name="TwoPlayers" type="Button" parent="HUD" unique_id=775215674]
 offset_left = 826.0
@@ -60,6 +75,12 @@ text = "60"
 [node name="Player2" parent="." unique_id=351649736 instance=ExtResource("2_vkb6s")]
 player_num = 2
 
+[node name="it_pointer" type="Panel" parent="." unique_id=930742799]
+offset_right = 15.0
+offset_bottom = 15.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_gc6h8")
+
+[connection signal="pressed" from="HUD/back_to_main" to="." method="back_to_main"]
 [connection signal="pressed" from="HUD/TwoPlayers" to="." method="two_players"]
 [connection signal="pressed" from="HUD/Start_Game" to="." method="start_game"]
 [connection signal="pressed" from="GameHUD/Pause" to="." method="pause"]

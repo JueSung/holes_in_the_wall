@@ -1,5 +1,6 @@
 @tool
 extends RigidBody2D
+class_name CustomObject
 var player: Player = null
 
 
@@ -9,9 +10,16 @@ var player: Player = null
         platform_shape = shape_
         $CollisionShape2D.shape = RectangleShape2D.new()
         $CollisionShape2D.shape.size = shape_
-        $TextureRect.size = shape_
-        $TextureRect.position = shape_ / -2.
+        $ColorRect.size = shape_
+        $ColorRect.position = shape_ / -2.
 
+@export var dangerous: bool = false:
+    set(dangerous_):
+        dangerous = dangerous_
+        if !dangerous:
+            $ColorRect.color = Color8(72, 72, 72, 255 * 255)
+        else:
+            $ColorRect.color = Color(1, .2, .2, 1)
 
 # var has_scored = false
 

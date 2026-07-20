@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://pblyov1deh37"]
+
+[ext_resource type="PackedScene" uid="uid://vhqsw8dnxjbh" path="res://object.tscn" id="1_dfc7q"]
+
+[node name="Map3" type="Node2D" unique_id=347469314]
+
+[node name="Floor" parent="." unique_id=117271720 instance=ExtResource("1_dfc7q")]
+position = Vector2(960, 1080)
+platform_shape = Vector2(1920, 40)
+
+[node name="Ceiling" parent="." unique_id=21191205 instance=ExtResource("1_dfc7q")]
+position = Vector2(960, 0)
+platform_shape = Vector2(1920, 40)
+
+[node name="Left_Wall" parent="." unique_id=1658631574 instance=ExtResource("1_dfc7q")]
+position = Vector2(0, 540)
+platform_shape = Vector2(40, 1080)
+
+[node name="Right_Wall" parent="." unique_id=1343850465 instance=ExtResource("1_dfc7q")]
+position = Vector2(1920, 540)
+platform_shape = Vector2(40, 1080)
+
+[node name="Object" parent="." unique_id=232018289 instance=ExtResource("1_dfc7q")]
+position = Vector2(404, 275)
+platform_shape = Vector2(768, 150)
+
+[node name="Object2" parent="." unique_id=1900736456 instance=ExtResource("1_dfc7q")]
+position = Vector2(1516, 275)
+platform_shape = Vector2(768, 150)
+
+[node name="Object3" parent="." unique_id=849509560 instance=ExtResource("1_dfc7q")]
+position = Vector2(964, 561)
+platform_shape = Vector2(200, 200)
+
+[node name="Object4" parent="." unique_id=2033121721 instance=ExtResource("1_dfc7q")]
+position = Vector2(1466, 875)
+
+[node name="Object5" parent="." unique_id=1954891995 instance=ExtResource("1_dfc7q")]
+position = Vector2(1215, 753)
+
+[node name="Object6" parent="." unique_id=1367699684 instance=ExtResource("1_dfc7q")]
+position = Vector2(676, 797)
+
+[node name="Object7" parent="." unique_id=1486379425 instance=ExtResource("1_dfc7q")]
+position = Vector2(1738, 985)
+
+[node name="Object8" parent="." unique_id=470336518 instance=ExtResource("1_dfc7q")]
+position = Vector2(398, 985)

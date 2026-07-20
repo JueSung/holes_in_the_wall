@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://de4mbm0swqqrn"]
+
+[ext_resource type="Script" uid="uid://wjdw6drni38" path="res://game_modes/dodge.gd" id="1_06jub"]
+[ext_resource type="PackedScene" uid="uid://vhqsw8dnxjbh" path="res://object.tscn" id="2_4qlch"]
+[ext_resource type="PackedScene" uid="uid://odb7rfkrvt08" path="res://player.tscn" id="3_k7ax7"]
+
+[node name="Dodge" type="Node2D" unique_id=1664279970]
+script = ExtResource("1_06jub")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=236894721]
+
+[node name="back_to_main" type="Button" parent="HUD" unique_id=2099281552]
+offset_left = 710.0
+offset_top = 404.0
+offset_right = 755.0
+offset_bottom = 435.0
+text = "back"
+
+[node name="Start" type="Button" parent="HUD" unique_id=83575072]
+offset_left = 886.0
+offset_top = 405.0
+offset_right = 1035.0
+offset_bottom = 496.0
+theme_override_font_sizes/font_size = 60
+text = "Start"
+
+[node name="Label" type="Label" parent="HUD" unique_id=101192901]
+offset_left = 210.0
+offset_top = 73.0
+offset_right = 1710.0
+offset_bottom = 183.0
+theme_override_font_sizes/font_size = 80
+text = "Dodge Game"
+horizontal_alignment = 1
+
+[node name="GameHUD" type="CanvasLayer" parent="." unique_id=343404904]
+
+[node name="Timer" type="Label" parent="GameHUD" unique_id=1640851879]
+offset_left = 1760.0
+offset_top = 40.0
+offset_right = 1800.0
+offset_bottom = 95.0
+theme_override_font_sizes/font_size = 40
+text = "0"
+
+[node name="Map" type="Node2D" parent="." unique_id=905469668]
+
+[node name="Platform" parent="Map" unique_id=1386158468 instance=ExtResource("2_4qlch")]
+position = Vector2(960, 850)
+
+[node name="Floor" parent="Map" unique_id=117271720 instance=ExtResource("2_4qlch")]
+position = Vector2(960, 1080)
+platform_shape = Vector2(1920, 40)
+dangerous = true
+
+[node name="Ceiling" parent="Map" unique_id=135777235 instance=ExtResource("2_4qlch")]
+position = Vector2(960, 0)
+platform_shape = Vector2(1920, 40)
+dangerous = true
+
+[node name="LeftWall" parent="Map" unique_id=245073056 instance=ExtResource("2_4qlch")]
+position = Vector2(0, 540)
+platform_shape = Vector2(40, 1080)
+dangerous = true
+
+[node name="RightWall" parent="Map" unique_id=1786030781 instance=ExtResource("2_4qlch")]
+position = Vector2(1920, 540)
+platform_shape = Vector2(40, 1080)
+dangerous = true
+
+[node name="Player" parent="." unique_id=1196465888 instance=ExtResource("3_k7ax7")]
+position = Vector2(960, 650)
+
+[connection signal="pressed" from="HUD/back_to_main" to="." method="back_to_main"]
+[connection signal="pressed" from="HUD/Start" to="." method="start"]

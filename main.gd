@@ -17,10 +17,10 @@ func _ready():
 
 
 	# set player - TODO move to start_game()
-	player = load("res://player.tscn").instantiate()
-	player.global_position = Vector2(-200., -200.)
-	player.set_physics_process(false)
-	add_child(player)
+	# player = load("res://player.tscn").instantiate()
+	# player.global_position = Vector2(-200., -200.)
+	# player.set_physics_process(false)
+	# add_child(player)
 
 
 
@@ -40,8 +40,16 @@ func tag_chosen() -> void:
 	$HUD.visible = false
 	# now everything gets handed off to Tag
 
+func dodge():
+	gamemode = load("res://game_modes/dodge.tscn").instantiate()
+	add_child(gamemode)
+	$HUD.visible = false
 
-
+# back to main
+func back():
+	gamemode.queue_free()
+	gamemode = null
+	$HUD.visible = true
 
 
 
@@ -112,8 +120,8 @@ func tag_chosen() -> void:
 	# rect.size = Vector2(150,150)
 	# temp_obj.get_node("CollisionShape2D").shape = rect
 	# temp_obj.global_position = Vector2(700,300)
-	# temp_obj.get_node("TextureRect").size = Vector2(150,150)
-	# temp_obj.get_node("TextureRect").position = Vector2(-75,-75)
+	# temp_obj.get_node("ColorRect").size = Vector2(150,150)
+	# temp_obj.get_node("ColorRect").position = Vector2(-75,-75)
 	# add_child(temp_obj)
 	
 	# temp_obj = load("res://object.tscn").instantiate()
@@ -121,8 +129,8 @@ func tag_chosen() -> void:
 	# rect.size = Vector2(150,150)
 	# temp_obj.get_node("CollisionShape2D").shape = rect
 	# temp_obj.global_position = Vector2(900,1000)
-	# temp_obj.get_node("TextureRect").size = Vector2(150,150)
-	# temp_obj.get_node("TextureRect").position = Vector2(-75,-75)
+	# temp_obj.get_node("ColorRect").size = Vector2(150,150)
+	# temp_obj.get_node("ColorRect").position = Vector2(-75,-75)
 	# add_child(temp_obj)
 
 	# temp_obj = load("res://object.tscn").instantiate()
@@ -130,8 +138,8 @@ func tag_chosen() -> void:
 	# rect.size = Vector2(150,150)
 	# temp_obj.get_node("CollisionShape2D").shape = rect
 	# temp_obj.global_position = Vector2(1400,700)
-	# temp_obj.get_node("TextureRect").size = Vector2(150,150)
-	# temp_obj.get_node("TextureRect").position = Vector2(-75,-75)
+	# temp_obj.get_node("ColorRect").size = Vector2(150,150)
+	# temp_obj.get_node("ColorRect").position = Vector2(-75,-75)
 	# add_child(temp_obj)
 
 	# temp_obj = load("res://object.tscn").instantiate()
@@ -139,8 +147,8 @@ func tag_chosen() -> void:
 	# rect.size = Vector2(150,150)
 	# temp_obj.get_node("CollisionShape2D").shape = rect
 	# temp_obj.global_position = Vector2(900,500)
-	# temp_obj.get_node("TextureRect").size = Vector2(150,150)
-	# temp_obj.get_node("TextureRect").position = Vector2(-75,-75)
+	# temp_obj.get_node("ColorRect").size = Vector2(150,150)
+	# temp_obj.get_node("ColorRect").position = Vector2(-75,-75)
 	# add_child(temp_obj)
 
 	# temp_obj = load("res://object.tscn").instantiate()
@@ -148,8 +156,8 @@ func tag_chosen() -> void:
 	# rect.size = Vector2(150,150)
 	# temp_obj.get_node("CollisionShape2D").shape = rect
 	# temp_obj.global_position = Vector2(1400,300)
-	# temp_obj.get_node("TextureRect").size = Vector2(150,150)
-	# temp_obj.get_node("TextureRect").position = Vector2(-75,-75)
+	# temp_obj.get_node("ColorRect").size = Vector2(150,150)
+	# temp_obj.get_node("ColorRect").position = Vector2(-75,-75)
 	# add_child(temp_obj)
 
 	# temp_obj = load("res://object.tscn").instantiate()
@@ -157,8 +165,8 @@ func tag_chosen() -> void:
 	# rect.size = Vector2(50,1000)
 	# temp_obj.get_node("CollisionShape2D").shape = rect
 	# temp_obj.global_position = Vector2(1850,500)
-	# temp_obj.get_node("TextureRect").size = Vector2(50,1000)
-	# temp_obj.get_node("TextureRect").position = Vector2(-25,-500)
+	# temp_obj.get_node("ColorRect").size = Vector2(50,1000)
+	# temp_obj.get_node("ColorRect").position = Vector2(-25,-500)
 	# add_child(temp_obj)
 
 
@@ -245,8 +253,8 @@ func tag_chosen() -> void:
 
 # 	obj_inst.get_node("CollisionShape2D").shape = RectangleShape2D.new()
 # 	obj_inst.get_node("CollisionShape2D").shape.size = Vector2(150, 150)
-# 	obj_inst.get_node("TextureRect").size = Vector2(150, 150)
-# 	obj_inst.get_node("TextureRect").position = Vector2(-75, -75)
+# 	obj_inst.get_node("ColorRect").size = Vector2(150, 150)
+# 	obj_inst.get_node("ColorRect").position = Vector2(-75, -75)
 # 	obj_inst.global_position = Vector2(randf() * 1920, -200)
 # 	obj_inst.linear_velocity = Vector2(0, 300)
 # 	obj_inst.setUp(player)
