@@ -883,8 +883,9 @@ animations = [{
 "speed": 0.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sh265"]
-size = Vector2(40, 74)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
+radius = 19.0
+height = 74.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u1c27"]
 size = Vector2(40, 50)
@@ -896,6 +897,7 @@ size = Vector2(42, 76)
 size = Vector2(42, 52)
 
 [node name="Player" type="CharacterBody2D" unique_id=1196465888]
+z_index = 10
 script = ExtResource("1_4flbx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=743330017]
@@ -923,7 +925,7 @@ sprite_frames = SubResource("SpriteFrames_iruf7")
 animation = &"crouch"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=141843366]
-shape = SubResource("RectangleShape2D_sh265")
+shape = SubResource("CapsuleShape2D_onrkg")
 
 [node name="crouch_hitbox" type="CollisionShape2D" parent="." unique_id=270107187]
 position = Vector2(0, 12)
@@ -934,6 +936,7 @@ collision_layer = 64
 collision_mask = 192
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=299771886]
+physics_interpolation_mode = 2
 visible = false
 shape = SubResource("RectangleShape2D_qtqh7")
 

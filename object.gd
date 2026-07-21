@@ -18,8 +18,10 @@ var player: Player = null
         dangerous = dangerous_
         if !dangerous:
             $ColorRect.color = Color8(72, 72, 72, 255 * 255)
+            z_index = 0
         else:
             $ColorRect.color = Color(1, .2, .2, 1)
+            z_index = 1
 
 # var has_scored = false
 

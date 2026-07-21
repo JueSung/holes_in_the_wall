@@ -49,21 +49,25 @@ text = "0"
 position = Vector2(960, 850)
 
 [node name="Floor" parent="Map" unique_id=117271720 instance=ExtResource("2_4qlch")]
+z_index = 1
 position = Vector2(960, 1080)
 platform_shape = Vector2(1920, 40)
 dangerous = true
 
 [node name="Ceiling" parent="Map" unique_id=135777235 instance=ExtResource("2_4qlch")]
+z_index = 1
 position = Vector2(960, 0)
 platform_shape = Vector2(1920, 40)
 dangerous = true
 
 [node name="LeftWall" parent="Map" unique_id=245073056 instance=ExtResource("2_4qlch")]
+z_index = 1
 position = Vector2(0, 540)
 platform_shape = Vector2(40, 1080)
 dangerous = true
 
 [node name="RightWall" parent="Map" unique_id=1786030781 instance=ExtResource("2_4qlch")]
+z_index = 1
 position = Vector2(1920, 540)
 platform_shape = Vector2(40, 1080)
 dangerous = true

@@ -49,9 +49,18 @@ const LAND_SPEED_THRESHOLD := 800. # vertical speed cutoff to run "land" animati
 
 var animatedSprite = null
 
+var input_extension: String = "_keyboard1" # default
+# list of input extensions (for identifying inputs from inputmap)
+# _keyboard1 (wasd, v)
+# _keyboard2 (arrows, \)
+# _keyboard3 (ijkl, [)
+# _controller0
+# _controller1
+# _controller# whatever number
 
 var inputs := {
 	"up" : false,
+	"up_dir": false, # used for dash only not jump
 	"down" : false,
 	"left" : false,
 	"right" : false,
@@ -59,6 +68,21 @@ var inputs := {
 	
 
 }
+
+func set_player_num(num: int):
+	player_num = num
+	match player_num:
+		1:
+			set_color("blue")
+		2:
+			set_color("red")
+		3:
+			set_color("green")
+		_:
+			set_color("white")
+
+func set_input_set(extension:String):
+	input_extension = extension
 
 func _ready() -> void:
 	$crouch_hitbox.disabled = true
@@ -97,7 +121,7 @@ func set_color(color: String):
 # used for taking in inputs
 func _process(_delta):
 	for input in inputs:
-		if Input.is_action_pressed(input+str(player_num)): # maps it to correct map thing or whatever in input map
+		if Input.is_action_pressed(input+input_extension): # maps it to correct map thing or whatever in input map
 			inputs[input] = true
 		else:
 			inputs[input] = false
@@ -200,7 +224,7 @@ func _physics_process(delta: float) -> void:
 			var alpha = HORIZONTAL_AIR_FRICTION if wall_jump_friction_timer <= 0 else HORIZONTAL_WALL_JUMP_AIR_FRICTION
 			velocity.x = move_toward(velocity.x, dir.x * HORIZONTAL_SPEED, alpha * delta)
 		
-		if last_tick_on_floor && !has_jumped: # just left floor and wasn't by jumping
+		if last_tick_on_floor && !has_jumped && dash_pause_timer <= 0: # just left floor and wasn't by jumping
 			set_animation("jump", dir)
 			coyote_timer = COYOTE_TIME
 		
@@ -222,13 +246,12 @@ func _physics_process(delta: float) -> void:
 	# JUMP BLOCK-----------------------------------------------------------------------------------------------------------------------------
 	# can jump out of (and cancel) a dash
 	if inputs["up"] && (((!has_jumped && (is_on_floor())) || ((dashing || wall_clutching || coyote_timer > 0) && has_released_up))):
-		#why_jump(has_jumped, is_on_floor(), dashing, wall_clutching, has_released_up, coyote_timer)
-		#print("RAN")
+		# why_jump(has_jumped, is_on_floor(), dashing, wall_clutching, has_released_up, coyote_timer)
+		# print("RAN")
 		coyote_timer = 0.
 		has_jumped = true
 		has_released_up = false
 		velocity.y = -1. * JUMP_SPEED
-
 		set_animation("jump", dir) # TODO change to some jump one?
 
 		if dashing:
@@ -254,7 +277,7 @@ func _physics_process(delta: float) -> void:
 		
 		# basicaly overwrite all velocity for dashing in one of the 8 directions
 		# get vertical direction
-		if inputs["up"]:
+		if inputs["up_dir"]:
 			dir.y -= 1
 		if inputs["down"]:
 			dir.y += 1
@@ -267,7 +290,6 @@ func _physics_process(delta: float) -> void:
 			dash_pause_timer = DASH_PAUSE_TIME
 			velocity = Vector2(0,0)
 			dash_velocity_to_be = DASH_SPEED * Vector2(dir).normalized() # overwites current velocity with dashing stuff
-			
 			set_animation("dash", dir)
 
 	
@@ -306,6 +328,7 @@ func set_animation(animation_name, dir):
 	if animatedSprite.animation == animation_name:
 		return
 	animatedSprite.rotation = 0
+	$CollisionShape2D.rotation = 0
 	if animation_name == "": # prob for setting dir or something
 		animation_name = animatedSprite.animation
 	match animation_name:
@@ -360,6 +383,8 @@ func set_animation(animation_name, dir):
 			animatedSprite.offset = Vector2(7., 30.)
 			animatedSprite.scale = Vector2(0.6, 0.6)
 			animatedSprite.rotation = atan2(dir.y, dir.x) + PI/2.
+			$CollisionShape2D.disabled = true
+			$CollisionShape2D.rotation = animatedSprite.rotation
 			$CollisionShape2D.disabled = false
 			$crouch_hitbox.disabled = true
 			$Hurtbox/CollisionShape2D.disabled = false
@@ -432,7 +457,22 @@ func animation_finished() -> void:
 		set_animation("idle", prev_nonzero_dir)
 	else:
 		set_animation("run", prev_nonzero_dir)
-	
+
+
+
+
+
+
+
+func freeze():
+	set_physics_process(false)
+	set_process(false)
+	$CollisionShape2D.disabled = true
+	$crouch_hitbox.disabled = true
+	$Hurtbox/CollisionShape2D.disabled = true
+	$Hurtbox/crouch_hitbox.disabled = true
+	modulate = Color(1,1,1,.3)
+
 
 # for testing
 # (((!has_jumped && (is_on_floor())) || ((dashing || wall_clutching || coyote_timer > 0) && has_released_up)))

@@ -5,36 +5,29 @@ var map = null
 
 var paused := false
 
-var who_it := 0 # 1 or 2 - set by start_game
+var players = []
+var num_players = 2 # default is 2
+var who_it := 0 # 1 or 2 or whatever number- set by start_game - index of player in players is who_it-1
 
 var timer := 60. # 1 minute game
 const GAME_LENGTH := 60.
-var tag_cooldown := .2
-const TAG_COOLDOWN := .2
+var tag_cooldown := .5
+const TAG_COOLDOWN := .5
+
+
+var num_controllers: int = 0
 
 @onready var it_pointer = $it_pointer
 
 
 func _ready() -> void:
-	$HUD/Start_Game.visible = false
-	$HUD/MapSelection.visible = false
+	$HUD/MapSelection.visible = true
+	$HUD/Start_Game.visible = true
 	
 	$GameHUD.visible = false
 	set_physics_process(false)
-	$Player1/Hurtbox.connect("area_entered", area_entered)
-	$Player2/Hurtbox.connect("area_entered", area_entered)
-	$Player1.visible = false
-	$Player2.visible = false
-	$Player1.set_color("blue")
-	$Player2.set_color("green")
 
 	$it_pointer.visible = false
-
-
-
-func two_players():
-	$HUD/MapSelection.visible = true
-	$HUD/Start_Game.visible = true
 
 
 
@@ -47,31 +40,38 @@ func start_game():
 	# reset HUD
 	$HUD.visible = false
 	$HUD/MapSelection.visible = false
-	$HUD/TwoPlayers.button_pressed = false
 	$HUD/MapSelection/Map1_button.button_pressed = false
 	$HUD/MapSelection/Map2_button.button_pressed = false
-	$HUD/Start_Game.visible = false
 	$GameHUD.visible = true
 	map = load(chosen_map).instantiate()
 	add_child(map)
 
-	
-	$Player1.global_position = Vector2(1920 * .25, 800)
-	$Player2.global_position = Vector2(1920 * .75, 800)
-	$Player1.set_physics_process(true)
-	$Player1.set_process(true)
-	$Player2.set_physics_process(true)
-	$Player2.set_process(true)
-	$Player1.visible = true
-	$Player2.visible = true
+
+	for i in range(len(players)):
+		if is_instance_valid(players[i]):
+			players[i].queue_free()
+	players = []
+
+	for i in range(num_players):
+		var player = preload("res://player.tscn").instantiate()
+		player.get_node("Hurtbox").area_entered.connect(area_entered.bind(player.get_node("Hurtbox")))
+		player.global_position = Vector2(1920 * (i+1.)/(num_players+1), 800)
+		players.append(player)
+		add_child(player)
+		player.set_physics_process(true)
+		player.set_process(true)
+
+		player.set_player_num(i + 1)
+		# setting input map
+		if i < num_players - num_controllers: # number of keyboard players
+			player.set_input_set("_keyboard" + str(int(i+1)))
+		else:
+			player.set_input_set("_controller" + str(int(i - (num_players-num_controllers))))
 
 	it_pointer.visible = true
 
-	who_it = int(randf() * 2) + 1
-	if who_it == 1:
-		it_pointer.reparent($Player1)
-	else:
-		it_pointer.reparent($Player2)
+	who_it = int(randf() * num_players) + 1
+	it_pointer.reparent(players[who_it-1])
 	it_pointer.position = Vector2(-7.5, -70)
    
 	timer = GAME_LENGTH
@@ -79,39 +79,43 @@ func start_game():
 
 func end_game():
 	set_physics_process(false)
-	$Player1.set_physics_process(false)
-	$Player2.set_physics_process(false)
-	$Player1.set_process(false)
-	$Player2.set_process(false)
+	for i in range(len(players)):
+		players[i].set_physics_process(false)
+		players[i].set_process(false)
 	map.queue_free()
 	map = null
 	$GameHUD.visible = false
 	$HUD.visible = true
-	$HUD/MapSelection.visible = false
-	$HUD/Label.text = "Player 1 Won!" if who_it == 2 else "Player 2 Won!"
+	$HUD/MapSelection.visible = true
+	$HUD/Label.text = "Player " + str(who_it) + " died! L"
 
 func _physics_process(delta: float) -> void:
 	if tag_cooldown > 0:
 		tag_cooldown -= delta
+		if tag_cooldown <= 0:
+			players[who_it-1].set_physics_process(true)
+			players[who_it-1].set_process(true)
 	timer -= delta
 	$GameHUD/Timer.text = str(int(timer))
 	if timer <= 0:
 		end_game()
 
 
-func area_entered(area):
+func area_entered(tagged_area, sender_area):
 	if tag_cooldown > 0:
 		return
-	if area.get_parent() is Player:
-		# swap whos it
-		if who_it == 1:
-			who_it = 2
-			it_pointer.reparent($Player2)
-		else:
-			who_it = 1
-			it_pointer.reparent($Player1)
+	var sender = sender_area.get_parent()
+	if !(sender is Player && sender.player_num == who_it):
+		return
+	var tagged = tagged_area.get_parent()
+	if tagged is Player:
+		who_it = tagged.player_num
+		it_pointer.reparent(players[who_it-1])
 		it_pointer.position = Vector2(-7.5, -70)
 		tag_cooldown = TAG_COOLDOWN
+		tagged.set_physics_process(false)
+		tagged.set_process(false)
+
 
 
 
@@ -119,20 +123,31 @@ func pause() -> void:
 	if !paused:
 		paused = true
 		set_physics_process(false)
-		$Player1.set_physics_process(false)
-		$Player2.set_physics_process(false)
-		$Player1.set_process(false)
-		$Player2.set_process(false)
+		for i in range(len(players)):
+			players[i].set_physics_process(false)
+			players[i].set_process(false)
 		$GameHUD/Pause.text = "Unpause"
 	else:
 		paused = false
 		set_physics_process(true)
-		$Player1.set_physics_process(true)
-		$Player2.set_physics_process(true)
-		$Player1.set_process(true)
-		$Player2.set_process(true)
+		for i in range(len(players)):
+			players[i].set_physics_process(true)
+			players[i].set_process(true)
 		$GameHUD/Pause.text = "Pause"
 
 
 func back_to_main() -> void:
 	get_parent().back()
+
+
+func num_players_changed(value: float) -> void:
+	num_players = int(value)
+	$HUD/NumControllers.max_value = num_players
+	$HUD/NumControllers.min_value = num_players-2
+
+	$HUD/NumPlayersLabel.text = str(int(value)) + " Players"
+
+
+func num_controllers_changed(value: float) -> void:
+	num_controllers = int(value)
+	$HUD/NumControllersLabel.text = str(int(value)) + " Controllers"

@@ -26,7 +26,9 @@ func start():
 	$GameHUD.visible = true
 	timer = 0.
 	set_physics_process(true)
-	$Player.position = Vector2(960, 650)
+	$Player.global_position = Vector2(960, 650)
+	$Player.set_animation("idle", Vector2.ZERO)
+	$Player.velocity = Vector2.ZERO
 	$Player.set_physics_process(true)
 	for i in range(len(objects)):
 		if is_instance_valid(objects[i]):
@@ -63,7 +65,7 @@ func _physics_process(delta: float) -> void:
 		
 		
 		# velocity # target at player current position
-		coll_inst.linear_velocity = (randf() * 300 + 150) * ($Player.global_position - coll_inst.global_position).normalized()
+		coll_inst.linear_velocity = (randf() * 300 + 150) * ($Player.global_position - coll_inst.global_position + Vector2(randf() * 20-10, randf() * 20-10)).normalized()
 		coll_inst.angular_velocity = randf() * PI/2. - PI/4.
 		
 		objects.append(coll_inst)

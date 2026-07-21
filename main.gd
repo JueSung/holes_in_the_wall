@@ -45,6 +45,11 @@ func dodge():
 	add_child(gamemode)
 	$HUD.visible = false
 
+func tutorial():
+	gamemode = load("res://game_modes/tutorial.tscn").instantiate()
+	add_child(gamemode)
+	$HUD.visible = false
+
 # back to main
 func back():
 	gamemode.queue_free()
