@@ -3,10 +3,16 @@ class_name FreePlay
 
 var map = null
 
+
+func player_setup_information(devices, colors):
+	print(colors)
+	$Player.set_device_num(devices[0]) # handles setting input set
+	$Player.set_color(colors[devices[0]])
+
 func _ready() -> void:
 	$Player.set_physics_process(false)
 	$Player.set_process(false)
-	$Player.visible = false
+	$Player.visible = true
 	$GameHUD.visible = false
 
 func start() -> void:

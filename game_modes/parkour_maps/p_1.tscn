@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://087qu8sjby2a"]
+
+[ext_resource type="Script" uid="uid://dlfjbfoe74oeo" path="res://game_modes/parkour_maps/p_1.gd" id="1_1ttxu"]
+[ext_resource type="PackedScene" uid="uid://vhqsw8dnxjbh" path="res://object.tscn" id="1_h5leo"]
+[ext_resource type="PackedScene" uid="uid://odb7rfkrvt08" path="res://player.tscn" id="2_2dpr2"]
+
+[node name="p1" type="Node2D" unique_id=1351599166]
+script = ExtResource("1_1ttxu")
+
+[node name="Floor" parent="." unique_id=117271720 instance=ExtResource("1_h5leo")]
+z_index = 1
+position = Vector2(0, 1080)
+platform_shape = Vector2(7680, 40)
+dangerous = true
+
+[node name="Player" parent="." unique_id=1196465888 instance=ExtResource("2_2dpr2")]
+position = Vector2(217, 369)
+
+[node name="Start_Platform" parent="." unique_id=1653677366 instance=ExtResource("1_h5leo")]
+position = Vector2(218, 549)
+platform_shape = Vector2(200, 40)

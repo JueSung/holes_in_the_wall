@@ -8,6 +8,9 @@ var objects = []
 
 var spawn_timer := 0.
 
+func player_setup_information(devices, colors):
+	$Player.set_device_num(devices[0]) # handles setting input set
+	$Player.set_color(colors[devices[0]])
 
 func _ready() -> void:
 	$HUD.visible = true
@@ -42,7 +45,7 @@ func _physics_process(delta: float) -> void:
 	spawn_timer -= delta
 	if spawn_timer > 0:
 		return
-	spawn_timer = 4.
+	spawn_timer = max(4.-timer * .025, .1)
 
 	# generate thingies
 	for i in range(2): # one good one bad

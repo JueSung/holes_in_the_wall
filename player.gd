@@ -49,14 +49,16 @@ const LAND_SPEED_THRESHOLD := 800. # vertical speed cutoff to run "land" animati
 
 var animatedSprite = null
 
+# device number
+# -1, -2, ... coorespond to keyboards
+# 0, 1, 2, ... coorespond to controllers
+var device_num := -1 
 var input_extension: String = "_keyboard1" # default
 # list of input extensions (for identifying inputs from inputmap)
 # _keyboard1 (wasd, v)
 # _keyboard2 (arrows, \)
 # _keyboard3 (ijkl, [)
-# _controller0
-# _controller1
-# _controller# whatever number
+# Controller
 
 var inputs := {
 	"up" : false,
@@ -69,17 +71,20 @@ var inputs := {
 
 }
 
+var color := "" # will be set prior to instantiation if desire alternate color other than default white
+
 func set_player_num(num: int):
 	player_num = num
-	match player_num:
-		1:
-			set_color("blue")
-		2:
-			set_color("red")
-		3:
-			set_color("green")
-		_:
-			set_color("white")
+
+func set_device_num(num:int):
+	device_num = num
+	if num < 0: # keyboard
+		set_input_set("_keyboard" + str(-1 * num))
+	else: # controller
+		set_input_set("Controller")
+
+func get_device_num():
+	return device_num
 
 func set_input_set(extension:String):
 	input_extension = extension
@@ -94,10 +99,14 @@ func _ready() -> void:
 	$AnimatedSprite2D_blue.visible = false
 	$AnimatedSprite2D_green.visible = false
 	$AnimatedSprite2D_red.visible = false
-	set_color("white")
+	if color == "":
+		set_color("white")
+	else:
+		set_color(color)
 	set_animation("idle", Vector2i(0,0))
 
-func set_color(color: String):
+func set_color(color_: String):
+	color = color_
 	if animatedSprite:
 		animatedSprite.visible = false
 	match color:
@@ -120,11 +129,20 @@ func set_color(color: String):
 
 # used for taking in inputs
 func _process(_delta):
-	for input in inputs:
-		if Input.is_action_pressed(input+input_extension): # maps it to correct map thing or whatever in input map
-			inputs[input] = true
-		else:
-			inputs[input] = false
+	if input_extension == "Controller":
+		inputs["up"] = Input.is_joy_button_pressed(device_num, JOY_BUTTON_A) || Input.is_joy_button_pressed(device_num, JOY_BUTTON_Y)
+		inputs["up_dir"] = Input.get_joy_axis(device_num, JOY_AXIS_LEFT_Y) < -.45
+		inputs["down"] = Input.get_joy_axis(device_num, JOY_AXIS_LEFT_Y) > .45
+		inputs["left"] = Input.get_joy_axis(device_num, JOY_AXIS_LEFT_X) < -.45
+		inputs["right"] = Input.get_joy_axis(device_num, JOY_AXIS_LEFT_X) > .45
+		inputs["dash"] = Input.is_joy_button_pressed(device_num, JOY_BUTTON_X) || Input.get_joy_axis(device_num, JOY_AXIS_TRIGGER_RIGHT) > .45
+	else:
+
+		for input in inputs:
+			if Input.is_action_pressed(input+input_extension): # maps it to correct map thing or whatever in input map
+				inputs[input] = true
+			else:
+				inputs[input] = false
 	
 
 func _physics_process(delta: float) -> void:

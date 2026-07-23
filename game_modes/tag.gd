@@ -5,6 +5,10 @@ var map = null
 
 var paused := false
 
+# player information devices/customization for instantiation of players stuff
+var devices := []
+var colors := {}
+
 var players = []
 var num_players = 2 # default is 2
 var who_it := 0 # 1 or 2 or whatever number- set by start_game - index of player in players is who_it-1
@@ -19,6 +23,9 @@ var num_controllers: int = 0
 
 @onready var it_pointer = $it_pointer
 
+func player_setup_information(devices_, colors_):
+	devices = devices_.duplicate()
+	colors = colors_.duplicate()
 
 func _ready() -> void:
 	$HUD/MapSelection.visible = true
@@ -57,16 +64,16 @@ func start_game():
 		player.get_node("Hurtbox").area_entered.connect(area_entered.bind(player.get_node("Hurtbox")))
 		player.global_position = Vector2(1920 * (i+1.)/(num_players+1), 800)
 		players.append(player)
+		
 		add_child(player)
+		player.set_color(colors[devices[i]])
 		player.set_physics_process(true)
 		player.set_process(true)
 
 		player.set_player_num(i + 1)
-		# setting input map
-		if i < num_players - num_controllers: # number of keyboard players
-			player.set_input_set("_keyboard" + str(int(i+1)))
-		else:
-			player.set_input_set("_controller" + str(int(i - (num_players-num_controllers))))
+
+		player.set_device_num(devices[i])
+		
 
 	it_pointer.visible = true
 
@@ -138,16 +145,3 @@ func pause() -> void:
 
 func back_to_main() -> void:
 	get_parent().back()
-
-
-func num_players_changed(value: float) -> void:
-	num_players = int(value)
-	$HUD/NumControllers.max_value = num_players
-	$HUD/NumControllers.min_value = num_players-2
-
-	$HUD/NumPlayersLabel.text = str(int(value)) + " Players"
-
-
-func num_controllers_changed(value: float) -> void:
-	num_controllers = int(value)
-	$HUD/NumControllersLabel.text = str(int(value)) + " Controllers"

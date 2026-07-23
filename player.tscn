@@ -890,8 +890,9 @@ height = 74.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u1c27"]
 size = Vector2(40, 50)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qtqh7"]
-size = Vector2(42, 76)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i3pqv"]
+radius = 20.0
+height = 76.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2wuci"]
 size = Vector2(42, 52)
@@ -937,8 +938,7 @@ collision_mask = 192
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=299771886]
 physics_interpolation_mode = 2
-visible = false
-shape = SubResource("RectangleShape2D_qtqh7")
+shape = SubResource("CapsuleShape2D_i3pqv")
 
 [node name="crouch_hitbox" type="CollisionShape2D" parent="Hurtbox" unique_id=1794863547]
 visible = false

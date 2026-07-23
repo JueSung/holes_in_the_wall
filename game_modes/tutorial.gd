@@ -4,6 +4,13 @@ class_name Tutorial
 
 var camera_location_on_deck = Vector2(1920/2., 1080/2.)
 
+# gets called by main for player set up stuff prior to add_child
+func player_setup_information(devices, colors):
+	$Player.set_device_num(devices[0]) # handles setting input set
+	$Player.set_color(colors[devices[0]])
+		
+
+
 func _ready() -> void:
 	$Player.set_player_num(1)
 	$Player.set_physics_process(true)

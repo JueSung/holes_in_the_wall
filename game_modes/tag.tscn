@@ -43,40 +43,6 @@ text = "Start Game"
 
 [node name="MapSelection" parent="HUD" unique_id=1382551998 instance=ExtResource("2_gc6h8")]
 
-[node name="NumPlayersSlider" type="HSlider" parent="HUD" unique_id=337927893]
-offset_left = 610.0
-offset_top = 421.0
-offset_right = 1310.0
-offset_bottom = 471.0
-min_value = 2.0
-max_value = 5.0
-value = 2.0
-
-[node name="NumPlayersLabel" type="Label" parent="HUD" unique_id=101780920]
-offset_left = 710.0
-offset_top = 337.0
-offset_right = 1210.0
-offset_bottom = 406.0
-theme_override_font_sizes/font_size = 50
-text = "2 Players"
-horizontal_alignment = 1
-
-[node name="NumControllers" type="VSlider" parent="HUD" unique_id=673733700]
-offset_left = 1591.0
-offset_top = 333.0
-offset_right = 1641.0
-offset_bottom = 483.0
-max_value = 2.0
-
-[node name="NumControllersLabel" type="Label" parent="HUD" unique_id=1975622998]
-offset_left = 1467.0
-offset_top = 255.0
-offset_right = 1767.0
-offset_bottom = 297.0
-theme_override_font_sizes/font_size = 30
-text = "0 Controllers"
-horizontal_alignment = 1
-
 [node name="GameHUD" type="CanvasLayer" parent="." unique_id=2127309582]
 
 [node name="Pause" type="Button" parent="GameHUD" unique_id=1196165223]
@@ -101,6 +67,4 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_gc6h8")
 
 [connection signal="pressed" from="HUD/back_to_main" to="." method="back_to_main"]
 [connection signal="pressed" from="HUD/Start_Game" to="." method="start_game"]
-[connection signal="value_changed" from="HUD/NumPlayersSlider" to="." method="num_players_changed"]
-[connection signal="value_changed" from="HUD/NumControllers" to="." method="num_controllers_changed"]
 [connection signal="pressed" from="GameHUD/Pause" to="." method="pause"]
