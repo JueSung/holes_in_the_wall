@@ -6,32 +6,42 @@
 script = ExtResource("1_frvc2")
 
 [node name="Map1_button" type="Button" parent="." unique_id=461531888]
-offset_left = 113.0
-offset_top = 588.0
-offset_right = 239.0
-offset_bottom = 651.0
+offset_left = 458.0
+offset_top = 602.0
+offset_right = 584.0
+offset_bottom = 665.0
 theme_override_font_sizes/font_size = 40
 toggle_mode = true
 text = "Map 1"
 
 [node name="Map2_button" type="Button" parent="." unique_id=416983512]
-offset_left = 1549.0
-offset_top = 592.0
-offset_right = 1675.0
-offset_bottom = 655.0
+offset_left = 637.0
+offset_top = 598.0
+offset_right = 763.0
+offset_bottom = 661.0
 theme_override_font_sizes/font_size = 40
 toggle_mode = true
 text = "Map 2"
 
 [node name="Map3_button" type="Button" parent="." unique_id=1589825587]
-offset_left = 816.0
-offset_top = 597.0
-offset_right = 942.0
-offset_bottom = 660.0
+offset_left = 867.0
+offset_top = 601.0
+offset_right = 993.0
+offset_bottom = 664.0
 theme_override_font_sizes/font_size = 40
 toggle_mode = true
 text = "Map 3"
 
-[connection signal="pressed" from="Map1_button" to="." method="map1"]
-[connection signal="pressed" from="Map2_button" to="." method="map2"]
-[connection signal="pressed" from="Map3_button" to="." method="map3"]
+[node name="Map4_button" type="Button" parent="." unique_id=1183671064]
+offset_left = 1089.0
+offset_top = 605.0
+offset_right = 1240.0
+offset_bottom = 668.0
+theme_override_font_sizes/font_size = 40
+toggle_mode = true
+text = "Map 4"
+
+[connection signal="pressed" from="Map1_button" to="." method="map_chosen" binds= [1]]
+[connection signal="pressed" from="Map2_button" to="." method="map_chosen" binds= [2]]
+[connection signal="pressed" from="Map3_button" to="." method="map_chosen" binds= [3]]
+[connection signal="pressed" from="Map4_button" to="." method="map_chosen" binds= [4]]

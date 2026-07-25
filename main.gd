@@ -13,6 +13,8 @@ func _ready():
 	$HUD.visible = true
 	$HUD/Tag.disabled = true
 	$PlayerSettingsViewportContainer.visible = false
+	$HUD/FreePlay.disabled = false
+
 	set_physics_process(false)
 	# set floor
 	# var floor_rect = RectangleShape2D.new()
@@ -60,14 +62,12 @@ func exit_settings(devices_: Array, colors_: Dictionary) -> void:
 
 	$HUD/Dodge.disabled = false
 	$HUD/Tutorial.disabled = false
-	$HUD/FreePlay.disabled = false
 	$HUD/Parkour.disabled = false
 	$HUD/Tag.disabled = false
 	if num_players > 1:
 		# block single player games
 		$HUD/Dodge.disabled = true
 		$HUD/Tutorial.disabled = true
-		$HUD/FreePlay.disabled = true
 		$HUD/Parkour.disabled = true
 	else:
 		# block games that require >1 people

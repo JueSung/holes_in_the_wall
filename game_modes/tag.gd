@@ -26,6 +26,7 @@ var num_controllers: int = 0
 func player_setup_information(devices_, colors_):
 	devices = devices_.duplicate()
 	colors = colors_.duplicate()
+	num_players = len(devices)
 
 func _ready() -> void:
 	$HUD/MapSelection.visible = true
@@ -50,8 +51,6 @@ func start_game():
 	$HUD/MapSelection/Map1_button.button_pressed = false
 	$HUD/MapSelection/Map2_button.button_pressed = false
 	$GameHUD.visible = true
-	map = load(chosen_map).instantiate()
-	add_child(map)
 
 
 	for i in range(len(players)):
@@ -73,8 +72,13 @@ func start_game():
 		player.set_player_num(i + 1)
 
 		player.set_device_num(devices[i])
-		
+	
+	# set up map after players so if map needs players, can grab using get_players() and to set player positions if needed
+	map = load(chosen_map).instantiate()
+	add_child(map)
 
+
+	
 	it_pointer.visible = true
 
 	who_it = int(randf() * num_players) + 1
@@ -145,3 +149,7 @@ func pause() -> void:
 
 func back_to_main() -> void:
 	get_parent().back()
+
+# for maps and stuff if they want to do weird things *ahem map 4
+func get_players():
+	return players

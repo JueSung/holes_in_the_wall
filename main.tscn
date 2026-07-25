@@ -118,7 +118,7 @@ offset_top = 168.0
 offset_right = 956.0
 offset_bottom = 198.0
 focus_mode = 0
-max_value = 2.0
+max_value = 3.0
 
 [node name="NumKeyboardersNum" type="Label" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" unique_id=131342911]
 offset_left = 623.0

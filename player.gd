@@ -146,7 +146,7 @@ func _process(_delta):
 	
 
 func _physics_process(delta: float) -> void:
-	if dash_pause_timer >= 0.0:
+	if dash_pause_timer > 0.0:
 		dash_pause_timer -= delta
 		if dash_pause_timer <= 0.0:
 			velocity = dash_velocity_to_be
@@ -479,7 +479,30 @@ func animation_finished() -> void:
 
 
 
+# just resets buncha stuff
+func reset():
+	velocity = Vector2.ZERO
+	call_deferred("set_animation", "idle", Vector2.ZERO) #set_animation("idle", Vector2.ZERO)
+	dash_timer = 0.0
+	dash_pause_timer = 0.0
+	dash_velocity_to_be = Vector2.ZERO
+	has_jumped = false
+	has_released_up = true
+	dashing = false
+	has_dashed = false
+	has_released_dash = true
+	dash_cooldown_timer = 0.0
+	wall_clutching = false
+	wall_jump_friction_timer = 0.0
+	coyote_timer = 0.0
+	prev_nonzero_dir = Vector2i(0,0)
+	prev_dir = Vector2i(0,0)
+	prev_velocity = Vector2(0,0)
+	land_finished = true
 
+	for input in inputs:
+		inputs[input] = false
+	#:/ think thats everything
 
 
 func freeze():

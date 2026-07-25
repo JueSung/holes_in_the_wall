@@ -1,0 +1,178 @@
+[gd_scene format=3 uid="uid://dg5tlfmtnkjuh"]
+
+[ext_resource type="Script" uid="uid://mrkks8h57nfj" path="res://maps/map_4.gd" id="1_bs2vh"]
+[ext_resource type="PackedScene" uid="uid://vhqsw8dnxjbh" path="res://object.tscn" id="1_ptnqf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w1ssv"]
+size = Vector2(100, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bs2vh"]
+size = Vector2(100, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sbb8o"]
+size = Vector2(100, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ti784"]
+size = Vector2(100, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s1r48"]
+size = Vector2(100, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ne4r3"]
+size = Vector2(100, 100)
+
+[node name="Map4" type="Node2D" unique_id=2119855140]
+script = ExtResource("1_bs2vh")
+
+[node name="Floor" parent="." unique_id=117271720 instance=ExtResource("1_ptnqf")]
+position = Vector2(480, 540)
+platform_shape = Vector2(720, 80)
+
+[node name="CeilingLeft" parent="." unique_id=193324183 instance=ExtResource("1_ptnqf")]
+position = Vector2(150, 0)
+platform_shape = Vector2(300, 40)
+
+[node name="CeilingMid" parent="." unique_id=1943794678 instance=ExtResource("1_ptnqf")]
+position = Vector2(480, 0)
+platform_shape = Vector2(160, 40)
+
+[node name="CeilingRight" parent="." unique_id=1637231476 instance=ExtResource("1_ptnqf")]
+position = Vector2(810, 0)
+platform_shape = Vector2(300, 40)
+
+[node name="LeftWallUp" parent="." unique_id=1372681557 instance=ExtResource("1_ptnqf")]
+position = Vector2(0, 75)
+platform_shape = Vector2(40, 150)
+
+[node name="LeftWallDown" parent="." unique_id=849441349 instance=ExtResource("1_ptnqf")]
+position = Vector2(0, 395)
+platform_shape = Vector2(40, 290)
+
+[node name="RightWallUp" parent="." unique_id=52634131 instance=ExtResource("1_ptnqf")]
+position = Vector2(960, 75)
+platform_shape = Vector2(40, 150)
+
+[node name="RightWallDown" parent="." unique_id=304929586 instance=ExtResource("1_ptnqf")]
+position = Vector2(960, 395)
+platform_shape = Vector2(40, 290)
+
+[node name="MidLeft" parent="." unique_id=1366246489 instance=ExtResource("1_ptnqf")]
+position = Vector2(300, 369)
+platform_shape = Vector2(150, 40)
+
+[node name="MidRight" parent="." unique_id=1632751275 instance=ExtResource("1_ptnqf")]
+position = Vector2(660, 372)
+platform_shape = Vector2(150, 40)
+
+[node name="MidHigh" parent="." unique_id=1399381874 instance=ExtResource("1_ptnqf")]
+position = Vector2(480, 215)
+platform_shape = Vector2(150, 40)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=38075385]
+offset = Vector2(480, 270)
+zoom = Vector2(2, 2)
+
+[node name="HoleBottomLeft" type="Area2D" parent="." unique_id=6547370]
+position = Vector2(70, 630)
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HoleBottomLeft" unique_id=552162974]
+shape = SubResource("RectangleShape2D_w1ssv")
+
+[node name="HoleBottomRight" type="Area2D" parent="." unique_id=1378521337]
+position = Vector2(890, 630)
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HoleBottomRight" unique_id=1909092382]
+shape = SubResource("RectangleShape2D_bs2vh")
+
+[node name="HoleMidLeft" type="Area2D" parent="." unique_id=1260824096]
+position = Vector2(-90, 190)
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HoleMidLeft" unique_id=344493026]
+position = Vector2(0, 10)
+shape = SubResource("RectangleShape2D_sbb8o")
+
+[node name="HoleMidRight" type="Area2D" parent="." unique_id=141660912]
+position = Vector2(1050, 200)
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HoleMidRight" unique_id=592576085]
+shape = SubResource("RectangleShape2D_ti784")
+
+[node name="HoleTopLeft" type="Area2D" parent="." unique_id=911283498]
+position = Vector2(350, -130)
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HoleTopLeft" unique_id=699579400]
+shape = SubResource("RectangleShape2D_s1r48")
+
+[node name="HoleTopRight" type="Area2D" parent="." unique_id=808826563]
+position = Vector2(610, -130)
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HoleTopRight" unique_id=376590565]
+shape = SubResource("RectangleShape2D_ne4r3")
+
+[node name="Object2" parent="." unique_id=291635731 instance=ExtResource("1_ptnqf")]
+position = Vector2(618, -255)
+
+[node name="Object3" parent="." unique_id=1828506479 instance=ExtResource("1_ptnqf")]
+position = Vector2(735, -102)
+platform_shape = Vector2(150, 170)
+
+[node name="Object4" parent="." unique_id=2021171042 instance=ExtResource("1_ptnqf")]
+position = Vector2(480, -103)
+platform_shape = Vector2(160, 170)
+
+[node name="Object5" parent="." unique_id=2018196722 instance=ExtResource("1_ptnqf")]
+position = Vector2(344, -255)
+
+[node name="Object6" parent="." unique_id=437242031 instance=ExtResource("1_ptnqf")]
+position = Vector2(225, -98)
+platform_shape = Vector2(150, 170)
+
+[node name="Object7" parent="." unique_id=1162696497 instance=ExtResource("1_ptnqf")]
+position = Vector2(1054, 325)
+
+[node name="Object8" parent="." unique_id=51301668 instance=ExtResource("1_ptnqf")]
+position = Vector2(1055, 75)
+
+[node name="Object9" parent="." unique_id=1670836532 instance=ExtResource("1_ptnqf")]
+position = Vector2(-215, 193)
+
+[node name="Object10" parent="." unique_id=37026986 instance=ExtResource("1_ptnqf")]
+position = Vector2(-95, 270)
+platform_shape = Vector2(150, 40)
+
+[node name="Object" parent="." unique_id=1037131168 instance=ExtResource("1_ptnqf")]
+position = Vector2(-91, 130)
+platform_shape = Vector2(150, 40)
+
+[node name="Object12" parent="." unique_id=1585359970 instance=ExtResource("1_ptnqf")]
+position = Vector2(1015, 613)
+
+[node name="Object13" parent="." unique_id=999740382 instance=ExtResource("1_ptnqf")]
+position = Vector2(892, 755)
+
+[node name="Object14" parent="." unique_id=786362079 instance=ExtResource("1_ptnqf")]
+position = Vector2(1175, 197)
+
+[node name="Object15" parent="." unique_id=594367647 instance=ExtResource("1_ptnqf")]
+position = Vector2(765, 649)
+
+[node name="Object16" parent="." unique_id=764171317 instance=ExtResource("1_ptnqf")]
+position = Vector2(195, 646)
+
+[node name="Object17" parent="." unique_id=1631527349 instance=ExtResource("1_ptnqf")]
+position = Vector2(74, 754)
+
+[node name="Object18" parent="." unique_id=563803056 instance=ExtResource("1_ptnqf")]
+position = Vector2(-55, 614)

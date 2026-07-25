@@ -45,7 +45,7 @@ func num_keyboard_players_changed(value: float) -> void:
 		for i in range(int(value)-num_keyboarders):
 			var inst = load("res://player.tscn").instantiate()
 			inst.set_device_num(-1 * (num_keyboarders + 1 + i))
-			inst.global_position = Vector2(1920/2., 300)
+			inst.global_position = Vector2(1920/2. + (randf() * 200 - 100), 300)
 			devices.append(inst.get_device_num())
 			players[inst.get_device_num()] = inst
 			colors[inst.get_device_num()] = "white"

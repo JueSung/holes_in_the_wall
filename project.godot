@@ -13,8 +13,8 @@ config_version=5
 config/name="holes_in_the_wall"
 run/main_scene="uid://bfk4aa2pvcopf"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-boot_splash/image="uid://beeuphrd3cfvf"
-config/icon="uid://beeuphrd3cfvf"
+boot_splash/image="uid://clc81hr4ixwo2"
+config/icon="uid://clc81hr4ixwo2"
 
 [display]
 

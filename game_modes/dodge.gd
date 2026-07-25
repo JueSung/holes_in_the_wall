@@ -30,8 +30,7 @@ func start():
 	timer = 0.
 	set_physics_process(true)
 	$Player.global_position = Vector2(960, 650)
-	$Player.set_animation("idle", Vector2.ZERO)
-	$Player.velocity = Vector2.ZERO
+	$Player.reset()
 	$Player.set_physics_process(true)
 	for i in range(len(objects)):
 		if is_instance_valid(objects[i]):

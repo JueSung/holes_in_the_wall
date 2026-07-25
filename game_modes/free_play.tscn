@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://p1hfw8ym1f6b" path="res://game_modes/free_play.gd" id="1_fevcf"]
 [ext_resource type="PackedScene" uid="uid://udv1e2rap566" path="res://map_selection.tscn" id="2_ojmmc"]
-[ext_resource type="PackedScene" uid="uid://odb7rfkrvt08" path="res://player.tscn" id="3_2b751"]
 
 [node name="FreePlay" type="Node2D" unique_id=75456858]
 script = ExtResource("1_fevcf")
@@ -42,9 +41,6 @@ offset_top = 18.0
 offset_right = 1901.0
 offset_bottom = 49.0
 text = "exit"
-
-[node name="Player" parent="." unique_id=1196465888 instance=ExtResource("3_2b751")]
-position = Vector2(-187, -141)
 
 [connection signal="pressed" from="HUD/Start" to="." method="start"]
 [connection signal="pressed" from="HUD/back_to_main" to="." method="back_to_main"]
