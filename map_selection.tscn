@@ -41,7 +41,16 @@ theme_override_font_sizes/font_size = 40
 toggle_mode = true
 text = "Map 4"
 
+[node name="Map5_button" type="Button" parent="." unique_id=54121815]
+offset_left = 1306.0
+offset_top = 595.0
+offset_right = 1432.0
+offset_bottom = 658.0
+theme_override_font_sizes/font_size = 40
+text = "Map 5"
+
 [connection signal="pressed" from="Map1_button" to="." method="map_chosen" binds= [1]]
 [connection signal="pressed" from="Map2_button" to="." method="map_chosen" binds= [2]]
 [connection signal="pressed" from="Map3_button" to="." method="map_chosen" binds= [3]]
 [connection signal="pressed" from="Map4_button" to="." method="map_chosen" binds= [4]]
+[connection signal="pressed" from="Map5_button" to="." method="map_chosen" binds= [5]]

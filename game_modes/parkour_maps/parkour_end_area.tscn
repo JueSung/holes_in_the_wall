@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://d18wscmvycgt6"]
+
+[ext_resource type="Script" uid="uid://cu8yygps6cf72" path="res://game_modes/parkour_maps/parkour_end_area.gd" id="1_ye1pu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ye1pu"]
+size = Vector2(120, 4)
+
+[node name="Parkour_end_area" type="Area2D" unique_id=1267198524]
+script = ExtResource("1_ye1pu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=508222941]
+visible = false
+shape = SubResource("RectangleShape2D_ye1pu")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1239272355]
+offset_left = -60.0
+offset_top = -2.0
+offset_right = 60.0
+offset_bottom = 2.0
+color = Color(0.22459176, 0.974345, 3.85046e-07, 0.4627451)

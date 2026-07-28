@@ -189,7 +189,7 @@ func _physics_process(delta: float) -> void:
 
 	# WALL CLUTCHING------------------------------------------------------------------------------------------------------------------------------
 	# var friction_factor := 1. # default 1 aka no friction
-	if is_on_wall():
+	if is_on_wall() && !is_on_floor():
 			
 		if wall_jump_friction_timer > 0.0:
 			wall_jump_friction_timer = 0.0
@@ -347,6 +347,7 @@ func set_animation(animation_name, dir):
 		return
 	animatedSprite.rotation = 0
 	$CollisionShape2D.rotation = 0
+	$Hurtbox/CollisionShape2D.rotation = 0
 	if animation_name == "": # prob for setting dir or something
 		animation_name = animatedSprite.animation
 	match animation_name:
@@ -403,6 +404,7 @@ func set_animation(animation_name, dir):
 			animatedSprite.rotation = atan2(dir.y, dir.x) + PI/2.
 			$CollisionShape2D.disabled = true
 			$CollisionShape2D.rotation = animatedSprite.rotation
+			$Hurtbox/CollisionShape2D.rotation = animatedSprite.rotation
 			$CollisionShape2D.disabled = false
 			$crouch_hitbox.disabled = true
 			$Hurtbox/CollisionShape2D.disabled = false
@@ -513,6 +515,19 @@ func freeze():
 	$Hurtbox/CollisionShape2D.disabled = true
 	$Hurtbox/crouch_hitbox.disabled = true
 	modulate = Color(1,1,1,.3)
+
+func enable_hitboxes():
+	$CollisionShape2D.disabled = false
+	$crouch_hitbox.disabled = false
+	$Hurtbox/CollisionShape2D.disabled = false
+	$Hurtbox/crouch_hitbox.disabled = false
+
+# only really lasts if physics_process false cuz then just sets animation which does hitbox stuff
+func disable_hitboxes():
+	$CollisionShape2D.disabled = true
+	$crouch_hitbox.disabled = true
+	$Hurtbox/CollisionShape2D.disabled = true
+	$Hurtbox/crouch_hitbox.disabled = true
 
 
 # for testing

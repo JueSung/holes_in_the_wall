@@ -1,21 +1,59 @@
 [gd_scene format=3 uid="uid://087qu8sjby2a"]
 
-[ext_resource type="Script" uid="uid://dlfjbfoe74oeo" path="res://game_modes/parkour_maps/p_1.gd" id="1_1ttxu"]
 [ext_resource type="PackedScene" uid="uid://vhqsw8dnxjbh" path="res://object.tscn" id="1_h5leo"]
-[ext_resource type="PackedScene" uid="uid://odb7rfkrvt08" path="res://player.tscn" id="2_2dpr2"]
+[ext_resource type="PackedScene" uid="uid://d18wscmvycgt6" path="res://game_modes/parkour_maps/parkour_end_area.tscn" id="2_2dpr2"]
 
 [node name="p1" type="Node2D" unique_id=1351599166]
-script = ExtResource("1_1ttxu")
+
+[node name="StartPlatform" parent="." unique_id=1261709125 instance=ExtResource("1_h5leo")]
+position = Vector2(257, 323)
+platform_shape = Vector2(150, 40)
 
 [node name="Floor" parent="." unique_id=117271720 instance=ExtResource("1_h5leo")]
 z_index = 1
-position = Vector2(0, 1080)
-platform_shape = Vector2(7680, 40)
+position = Vector2(960, 1080)
+platform_shape = Vector2(1920, 40)
 dangerous = true
+preset = "floor"
 
-[node name="Player" parent="." unique_id=1196465888 instance=ExtResource("2_2dpr2")]
-position = Vector2(217, 369)
+[node name="Ceiling" parent="." unique_id=1275567727 instance=ExtResource("1_h5leo")]
+z_index = 1
+position = Vector2(960, 0)
+platform_shape = Vector2(1920, 40)
+dangerous = true
+preset = "ceiling"
 
-[node name="Start_Platform" parent="." unique_id=1653677366 instance=ExtResource("1_h5leo")]
-position = Vector2(218, 549)
-platform_shape = Vector2(200, 40)
+[node name="LeftWall" parent="." unique_id=1593094874 instance=ExtResource("1_h5leo")]
+z_index = 1
+position = Vector2(0, 540)
+platform_shape = Vector2(40, 1080)
+dangerous = true
+preset = "left_wall"
+
+[node name="RightWall" parent="." unique_id=925730981 instance=ExtResource("1_h5leo")]
+z_index = 1
+position = Vector2(1920, 540)
+platform_shape = Vector2(40, 1080)
+dangerous = true
+preset = "right_wall"
+
+[node name="Parkour_end_area" parent="." unique_id=1267198524 instance=ExtResource("2_2dpr2")]
+position = Vector2(1653, 438)
+
+[node name="end_platform" parent="." unique_id=350830955 instance=ExtResource("1_h5leo")]
+position = Vector2(1653, 450)
+platform_shape = Vector2(150, 20)
+
+[node name="Object1" parent="." unique_id=753124776 instance=ExtResource("1_h5leo")]
+position = Vector2(573, 503)
+
+[node name="Object2" parent="." unique_id=1622620630 instance=ExtResource("1_h5leo")]
+position = Vector2(573, 267)
+platform_shape = Vector2(40, 500)
+
+[node name="Object3" parent="." unique_id=1426107111 instance=ExtResource("1_h5leo")]
+position = Vector2(1193, 528)
+
+[node name="Object4" parent="." unique_id=2140724366 instance=ExtResource("1_h5leo")]
+position = Vector2(1193, 271)
+platform_shape = Vector2(40, 500)

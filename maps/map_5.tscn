@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bww0drecfkb16"]
+
+[ext_resource type="PackedScene" uid="uid://vhqsw8dnxjbh" path="res://object.tscn" id="1_l6v1m"]
+
+[node name="Map5" type="Node2D" unique_id=1549755648]
+
+[node name="Floor" parent="." unique_id=117271720 instance=ExtResource("1_l6v1m")]
+position = Vector2(960, 1080)
+platform_shape = Vector2(1920, 40)
+preset = "floor"
+
+[node name="Ceiling" parent="." unique_id=2130417830 instance=ExtResource("1_l6v1m")]
+position = Vector2(960, 0)
+platform_shape = Vector2(1920, 40)
+preset = "ceiling"
+
+[node name="LeftWall" parent="." unique_id=779370486 instance=ExtResource("1_l6v1m")]
+position = Vector2(0, 540)
+platform_shape = Vector2(40, 1080)
+preset = "left_wall"
+
+[node name="RightWall" parent="." unique_id=1572970280 instance=ExtResource("1_l6v1m")]
+position = Vector2(1920, 540)
+platform_shape = Vector2(40, 1080)
+preset = "right_wall"

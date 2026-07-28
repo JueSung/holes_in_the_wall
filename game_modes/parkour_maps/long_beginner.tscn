@@ -1,0 +1,213 @@
+[gd_scene format=3 uid="uid://b3w8boh804uk1"]
+
+[ext_resource type="PackedScene" uid="uid://d18wscmvycgt6" path="res://game_modes/parkour_maps/parkour_end_area.tscn" id="1_btwb0"]
+[ext_resource type="PackedScene" uid="uid://vhqsw8dnxjbh" path="res://object.tscn" id="2_7npn8"]
+
+[sub_resource type="Curve2D" id="Curve2D_7npn8"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 760, 540, 0, 0, 0, 0, 1532, 540, 0, 0, 0, -200, 2320, 666, 0, 0, 0, 0, 3023, 360, -600, 400, 0, 0, 3674, -499, 0, 0, 0, 0, 3701, 1960, 0, 0, 0, 0, 3900, 1860, 0, 0, 0, 0, 6400, 1860)
+}
+point_count = 8
+
+[node name="LongBeginner" type="Node2D" unique_id=1306556180]
+
+[node name="CameraPath" type="Path2D" parent="." unique_id=672420134]
+curve = SubResource("Curve2D_7npn8")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="CameraPath" unique_id=787696897]
+position = Vector2(760, 540)
+
+[node name="Camera2D" type="Camera2D" parent="CameraPath/PathFollow2D" unique_id=1898018196]
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+
+[node name="Parkour_end_area" parent="." unique_id=1267198524 instance=ExtResource("1_btwb0")]
+position = Vector2(6927, 1919)
+
+[node name="StartPlatform" parent="." unique_id=1445901008 instance=ExtResource("2_7npn8")]
+position = Vector2(196, 596)
+platform_shape = Vector2(150, 40)
+
+[node name="Object" parent="." unique_id=117271720 instance=ExtResource("2_7npn8")]
+top_level = true
+position = Vector2(515, 662)
+platform_shape = Vector2(150, 40)
+
+[node name="Object2" parent="." unique_id=219522278 instance=ExtResource("2_7npn8")]
+top_level = true
+position = Vector2(845, 607)
+platform_shape = Vector2(150, 40)
+
+[node name="Object3" parent="." unique_id=323137253 instance=ExtResource("2_7npn8")]
+top_level = true
+position = Vector2(1133, 601)
+platform_shape = Vector2(40, 150)
+
+[node name="Object4" parent="." unique_id=421691023 instance=ExtResource("2_7npn8")]
+top_level = true
+position = Vector2(1399, 564)
+platform_shape = Vector2(40, 150)
+
+[node name="Object5" parent="." unique_id=64992770 instance=ExtResource("2_7npn8")]
+top_level = true
+position = Vector2(1780, 651)
+platform_shape = Vector2(150, 40)
+
+[node name="Floor" parent="." unique_id=1046608519 instance=ExtResource("2_7npn8")]
+top_level = true
+z_index = 1
+position = Vector2(1197, 1080)
+platform_shape = Vector2(2400, 40)
+dangerous = true
+
+[node name="Ceiling" parent="." unique_id=1364696202 instance=ExtResource("2_7npn8")]
+top_level = true
+z_index = 1
+position = Vector2(960, 0)
+platform_shape = Vector2(1920, 40)
+dangerous = true
+preset = "ceiling"
+
+[node name="LeftWall" parent="." unique_id=219846212 instance=ExtResource("2_7npn8")]
+top_level = true
+z_index = 1
+position = Vector2(0, 540)
+platform_shape = Vector2(40, 1080)
+dangerous = true
+preset = "left_wall"
+
+[node name="Checkpoint1" parent="." unique_id=1564438300 instance=ExtResource("1_btwb0")]
+position = Vector2(1780, 629)
+
+[node name="Object6" parent="." unique_id=1772232424 instance=ExtResource("2_7npn8")]
+top_level = true
+position = Vector2(1927, 651)
+platform_shape = Vector2(150, 40)
+
+[node name="Object7" parent="." unique_id=2003814026 instance=ExtResource("2_7npn8")]
+top_level = true
+position = Vector2(2196, 562)
+platform_shape = Vector2(50, 500)
+
+[node name="Object8" parent="." unique_id=955443936 instance=ExtResource("2_7npn8")]
+top_level = true
+position = Vector2(2797, 825)
+platform_shape = Vector2(800, 500)
+
+[node name="left" parent="." unique_id=198999633 instance=ExtResource("2_7npn8")]
+top_level = true
+z_index = 1
+position = Vector2(1900, 106)
+platform_shape = Vector2(40, 400)
+dangerous = true
+
+[node name="up" parent="." unique_id=511651439 instance=ExtResource("2_7npn8")]
+top_level = true
+z_index = 1
+position = Vector2(2355, 259)
+platform_shape = Vector2(950, 120)
+dangerous = true
+
+[node name="down" parent="." unique_id=77505710 instance=ExtResource("2_7npn8")]
+top_level = true
+position = Vector2(2071, 1074)
+platform_shape = Vector2(150, 50)
+
+[node name="Object9" parent="." unique_id=1196557301 instance=ExtResource("2_7npn8")]
+top_level = true
+position = Vector2(2899, 42)
+platform_shape = Vector2(150, 700)
+
+[node name="Object10" parent="." unique_id=1732069496 instance=ExtResource("2_7npn8")]
+top_level = true
+position = Vector2(3389, 1126)
+platform_shape = Vector2(400, 2500)
+
+[node name="Checkpoint2" parent="." unique_id=1357047819 instance=ExtResource("1_btwb0")]
+position = Vector2(3508, -124)
+
+[node name="Object11" parent="." unique_id=963887814 instance=ExtResource("2_7npn8")]
+z_index = 1
+position = Vector2(3853, 109)
+platform_shape = Vector2(150, 3000)
+dangerous = true
+
+[node name="Object12" parent="." unique_id=1693971713 instance=ExtResource("2_7npn8")]
+position = Vector2(4164, 1880)
+platform_shape = Vector2(700, 150)
+
+[node name="Object13" parent="." unique_id=404888002 instance=ExtResource("2_7npn8")]
+z_index = 1
+position = Vector2(4698, 2029)
+platform_shape = Vector2(150, 700)
+dangerous = true
+
+[node name="Object14" parent="." unique_id=334300282 instance=ExtResource("2_7npn8")]
+position = Vector2(5040, 1831)
+platform_shape = Vector2(300, 150)
+
+[node name="Object15" parent="." unique_id=1268070881 instance=ExtResource("2_7npn8")]
+position = Vector2(5462, 1806)
+
+[node name="Object16" parent="." unique_id=1213370761 instance=ExtResource("2_7npn8")]
+position = Vector2(6008, 1574)
+platform_shape = Vector2(500, 500)
+
+[node name="Object17" parent="." unique_id=78987057 instance=ExtResource("2_7npn8")]
+position = Vector2(6008, 2146)
+platform_shape = Vector2(500, 450)
+
+[node name="Checkpoint3" parent="." unique_id=1786162447 instance=ExtResource("1_btwb0")]
+position = Vector2(6115, 1919)
+
+[node name="Object18" parent="." unique_id=136031239 instance=ExtResource("2_7npn8")]
+z_index = 1
+position = Vector2(6333, 2110)
+platform_shape = Vector2(150, 300)
+dangerous = true
+
+[node name="Object19" parent="." unique_id=656710836 instance=ExtResource("2_7npn8")]
+z_index = 1
+position = Vector2(6333, 1569)
+platform_shape = Vector2(150, 510)
+dangerous = true
+
+[node name="Object20" parent="." unique_id=1966706921 instance=ExtResource("2_7npn8")]
+position = Vector2(6506, 2002)
+platform_shape = Vector2(200, 50)
+
+[node name="Object21" parent="." unique_id=679388378 instance=ExtResource("2_7npn8")]
+z_index = 1
+position = Vector2(6810, 2143)
+platform_shape = Vector2(40, 450)
+dangerous = true
+
+[node name="Object22" parent="." unique_id=748205010 instance=ExtResource("2_7npn8")]
+z_index = 1
+position = Vector2(6810, 1565)
+platform_shape = Vector2(40, 550)
+dangerous = true
+
+[node name="Object23" parent="." unique_id=2128020445 instance=ExtResource("2_7npn8")]
+position = Vector2(6927, 1946)
+platform_shape = Vector2(200, 50)
+
+[node name="Top" parent="." unique_id=290355741 instance=ExtResource("2_7npn8")]
+z_index = 1
+position = Vector2(5928, 1303)
+platform_shape = Vector2(4000, 40)
+dangerous = true
+
+[node name="Right" parent="." unique_id=694582979 instance=ExtResource("2_7npn8")]
+z_index = 1
+position = Vector2(7908, 1844)
+platform_shape = Vector2(40, 1050)
+dangerous = true
+
+[node name="Bottom" parent="." unique_id=272564449 instance=ExtResource("2_7npn8")]
+z_index = 1
+position = Vector2(5758, 2383)
+platform_shape = Vector2(4339, 40)
+dangerous = true

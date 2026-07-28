@@ -23,6 +23,23 @@ var player: Player = null
             $ColorRect.color = Color(1, .2, .2, 1)
             z_index = 1
 
+@export var preset: String = "":
+    set(preset_):
+        preset = preset_
+        match preset:
+            "floor":
+                platform_shape = Vector2(1920, 40)
+                global_position = Vector2(960., 1080)
+            "ceiling":
+                platform_shape = Vector2(1920, 40)
+                global_position = Vector2(960., 0)
+            "left_wall":
+                platform_shape = Vector2(40, 1080)
+                global_position = Vector2(0, 540)
+            "right_wall":
+                platform_shape = Vector2(40, 1080)
+                global_position = Vector2(1920, 540)
+
 # var has_scored = false
 
 # func setUp(player_):
