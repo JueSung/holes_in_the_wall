@@ -17,10 +17,10 @@ var player: Player = null
     set(dangerous_):
         dangerous = dangerous_
         if !dangerous:
-            $ColorRect.color = Color8(72, 72, 72, 255 * 255)
+            colorr = Vector4i(72, 88, 109, 255)
             z_index = 0
         else:
-            $ColorRect.color = Color(1, .2, .2, 1)
+            colorr = Vector4i(234, 53, 70, 255)
             z_index = 1
 
 @export var preset: String = "":
@@ -39,6 +39,13 @@ var player: Player = null
             "right_wall":
                 platform_shape = Vector2(40, 1080)
                 global_position = Vector2(1920, 540)
+
+@export var colorr: Vector4i = Vector4i(116, 132, 162, 255):
+    set(colorr_):
+        colorr = colorr_
+        # overrides danger/not dangerous color
+        # also this doesn't work quite right if you put in value outside of 0 to 255 think it just defaults to 255
+        $ColorRect.color = Color8(colorr.x, colorr.y, colorr.z, colorr.w)
 
 # var has_scored = false
 

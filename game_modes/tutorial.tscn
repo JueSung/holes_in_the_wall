@@ -47,7 +47,7 @@ offset_left = -960.0
 offset_top = -540.0
 offset_right = 240.0
 offset_bottom = 540.0
-color = Color(0.6313448, 0.7528459, 0.83609474, 1)
+color = Color(0.52914363, 0.76627314, 0.923255, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="Object2" parent="Map/Area1" unique_id=1430705516 instance=ExtResource("3_p3f7m")]
@@ -70,7 +70,7 @@ offset_left = -320.0
 offset_top = -540.0
 offset_right = 320.0
 offset_bottom = 540.0
-color = Color(0.72755736, 0.70236874, 0.77769643, 1)
+color = Color(0.7394455, 0.6649259, 0.9446041, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Area2" unique_id=1518439733]
 visible = false
@@ -92,7 +92,7 @@ offset_left = -200.0
 offset_top = -540.0
 offset_right = 200.0
 offset_bottom = 540.0
-color = Color(0.8116216, 0.5848615, 0.62641406, 1)
+color = Color(0.92274666, 0.5062902, 0.6319455, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Area3" unique_id=174992752]
 visible = false
@@ -123,7 +123,7 @@ offset_left = -375.0
 offset_top = -540.0
 offset_right = 375.0
 offset_bottom = 540.0
-color = Color(0.79553986, 0.7985154, 0.623625, 1)
+color = Color(0.7809079, 0.8212453, 0.43460023, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Area4" unique_id=691424032]
 visible = false
@@ -145,6 +145,7 @@ z_index = 1
 position = Vector2(2628, 1040)
 platform_shape = Vector2(374, 40)
 dangerous = true
+colorr = Vector4i(234, 53, 70, 255)
 
 [node name="Player" parent="Map/Area4" unique_id=124541860 instance=ExtResource("2_fuvqo")]
 position = Vector2(-209, 183)
@@ -163,7 +164,7 @@ offset_left = -425.0
 offset_top = -540.0
 offset_right = 425.0
 offset_bottom = 540.0
-color = Color(0.5770355, 0.75933266, 0.6136543, 1)
+color = Color(0.4716127, 0.79757077, 0.47916514, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Area5" unique_id=844977769]
 visible = false

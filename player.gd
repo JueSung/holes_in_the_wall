@@ -95,10 +95,15 @@ func _ready() -> void:
 	set_physics_process(false)
 	set_process(false)
 
-	$AnimatedSprite2D.visible = false
+	$AnimatedSprite2D_white.visible = false
 	$AnimatedSprite2D_blue.visible = false
 	$AnimatedSprite2D_green.visible = false
 	$AnimatedSprite2D_red.visible = false
+	$AnimatedSprite2D_purple.visible = false
+	$AnimatedSprite2D_pink.visible = false
+	$AnimatedSprite2D_yellow.visible = false
+	$AnimatedSprite2D_orange.visible = false
+	$AnimatedSprite2D_cyan.visible = false
 	if color == "":
 		set_color("white")
 	else:
@@ -109,21 +114,24 @@ func set_color(color_: String):
 	color = color_
 	if animatedSprite:
 		animatedSprite.visible = false
-	match color:
-		"white":
-			animatedSprite = $AnimatedSprite2D
-			animatedSprite.visible = true
-		"blue":
-			animatedSprite = $AnimatedSprite2D_blue
-			animatedSprite.visible = true
-		"green":
-			animatedSprite = $AnimatedSprite2D_green
-			animatedSprite.visible = true
-		"red":
-			animatedSprite = $AnimatedSprite2D_red
-			animatedSprite.visible = true
-		_:
-			print("idk this player color")
+	
+	animatedSprite = get_node("AnimatedSprite2D_" + color_)
+	animatedSprite.visible = true
+	# match color:
+	# 	"white":
+	# 		animatedSprite = $AnimatedSprite2D
+	# 		animatedSprite.visible = true
+	# 	"blue":
+	# 		animatedSprite = $AnimatedSprite2D_blue
+	# 		animatedSprite.visible = true
+	# 	"green":
+	# 		animatedSprite = $AnimatedSprite2D_green
+	# 		animatedSprite.visible = true
+	# 	"red":
+	# 		animatedSprite = $AnimatedSprite2D_red
+	# 		animatedSprite.visible = true
+	# 	_:
+	# 		print("idk this player color")
 			
 
 
@@ -356,9 +364,9 @@ func set_animation(animation_name, dir):
 				return # allow landing animation prior to idle animation
 			animatedSprite.animation = "idle"
 			if animatedSprite.flip_h == false:
-				animatedSprite.offset = Vector2(-2., -149.)
+				animatedSprite.offset = Vector2(5., 37.)
 			else:
-				animatedSprite.offset = Vector2(2., -149.)
+				animatedSprite.offset = Vector2(-5., 37.)
 			animatedSprite.scale = Vector2(0.6, 0.6)
 			$CollisionShape2D.disabled = false
 			$crouch_hitbox.disabled = true
@@ -368,9 +376,9 @@ func set_animation(animation_name, dir):
 		"crouch":
 			animatedSprite.animation = "crouch"
 			if animatedSprite.flip_h == false:
-				animatedSprite.offset = Vector2(-3., -110.)
+				animatedSprite.offset = Vector2(5., 37.)
 			else:
-				animatedSprite.offset = Vector2(3., -110.)
+				animatedSprite.offset = Vector2(-5., 37.)
 			animatedSprite.scale = Vector2(0.6, 0.6)
 			$CollisionShape2D.disabled = true
 			$crouch_hitbox.disabled = false
@@ -383,11 +391,11 @@ func set_animation(animation_name, dir):
 			animatedSprite.animation = "run"
 			if dir.x > 0:
 				animatedSprite.flip_h = false
-				animatedSprite.offset = Vector2(7., -149.)
+				animatedSprite.offset = Vector2(4., 37.)
 				animatedSprite.scale = Vector2(0.6, 0.6)
 			else:
 				animatedSprite.flip_h = true
-				animatedSprite.offset = Vector2(-7., -149.)
+				animatedSprite.offset = Vector2(-4., 37.)
 				animatedSprite.scale = Vector2(0.6, 0.6)
 
 			$CollisionShape2D.disabled = false
@@ -399,7 +407,7 @@ func set_animation(animation_name, dir):
 		"dash":
 			animatedSprite.animation = "dash"
 			animatedSprite.flip_h = false
-			animatedSprite.offset = Vector2(7., 30.)
+			animatedSprite.offset = Vector2(5., 31.)
 			animatedSprite.scale = Vector2(0.6, 0.6)
 			animatedSprite.rotation = atan2(dir.y, dir.x) + PI/2.
 			$CollisionShape2D.disabled = true
@@ -415,11 +423,11 @@ func set_animation(animation_name, dir):
 			animatedSprite.animation = "wall_clutch"
 			if dir.x > 0:
 				animatedSprite.flip_h = false
-				animatedSprite.offset = Vector2(-80., 18)
+				animatedSprite.offset = Vector2(-8., 8)
 				animatedSprite.scale = Vector2(0.6, 0.6)
 			else:
 				animatedSprite.flip_h = true
-				animatedSprite.offset = Vector2(80., 18)
+				animatedSprite.offset = Vector2(8., 8)
 				animatedSprite.scale = Vector2(0.6, 0.6)
 
 			$CollisionShape2D.disabled = false
@@ -435,11 +443,11 @@ func set_animation(animation_name, dir):
 				using_dir.x = 1 if animatedSprite.flip_h == false else -1
 			if using_dir.x > 0:
 				animatedSprite.flip_h = false
-				animatedSprite.offset = Vector2(-8., -32.)
+				animatedSprite.offset = Vector2(3., 30.)
 				animatedSprite.scale = Vector2(0.6, 0.6)
 			else:
 				animatedSprite.flip_h = true
-				animatedSprite.offset = Vector2(8., -32.)
+				animatedSprite.offset = Vector2(-3., 30.)
 				animatedSprite.scale = Vector2(0.6, 0.6)
 			if animatedSprite.is_playing():
 				animatedSprite.stop()
@@ -454,10 +462,10 @@ func set_animation(animation_name, dir):
 				using_dir.x = 1 if animatedSprite.flip_h == false else -1
 			if using_dir.x > 0:
 				animatedSprite.flip_h = false
-				animatedSprite.offset = Vector2(-0., 23.)
+				animatedSprite.offset = Vector2(4., 37.)
 			else:
 				animatedSprite.flip_h = true
-				animatedSprite.offset = Vector2(0., 23.)
+				animatedSprite.offset = Vector2(4., 37.)
 			animatedSprite.scale = Vector2(0.6, 0.6)
 			$CollisionShape2D.disabled = false
 			$crouch_hitbox.disabled = true

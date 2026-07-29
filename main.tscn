@@ -4,34 +4,17 @@
 [ext_resource type="Script" uid="uid://clv473lcrad6y" path="res://player_settings.gd" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://vhqsw8dnxjbh" path="res://object.tscn" id="3_h2yge"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_272bh"]
-size = Vector2(150, 40)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5vw27"]
-size = Vector2(150, 40)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kek77"]
-size = Vector2(150, 40)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4c57u"]
-size = Vector2(150, 40)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7mycd"]
+size = Vector2(150, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
-size = Vector2(150, 20)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
-size = Vector2(150, 20)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
-size = Vector2(150, 20)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7mycd"]
 size = Vector2(150, 20)
 
 [node name="Main" type="Node" unique_id=1455378392]
 script = ExtResource("1_ig7tw")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=807961327]
+visible = false
 
 [node name="Title" type="Label" parent="HUD" unique_id=792982399]
 offset_left = 379.0
@@ -89,14 +72,13 @@ theme_override_font_sizes/font_size = 50
 text = "Settings"
 
 [node name="PlayerSettingsViewportContainer" type="SubViewportContainer" parent="." unique_id=377193909]
-visible = false
 offset_right = 1920.0
 offset_bottom = 1080.0
 
 [node name="SubViewport" type="SubViewport" parent="PlayerSettingsViewportContainer" unique_id=1934197847]
 handle_input_locally = false
 size = Vector2i(1920, 1080)
-render_target_update_mode = 0
+render_target_update_mode = 4
 
 [node name="PlayerSettings" type="CanvasLayer" parent="PlayerSettingsViewportContainer/SubViewport" unique_id=215295405]
 script = ExtResource("2_0xm2m")
@@ -106,11 +88,12 @@ offset_left = 710.0
 offset_top = 94.0
 offset_right = 897.0
 offset_bottom = 117.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Press Any Button to Join"
 
 [node name="Object" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" unique_id=117271720 instance=ExtResource("3_h2yge")]
-position = Vector2(960, 776)
-platform_shape = Vector2(1500, 40)
+position = Vector2(960, 876)
+platform_shape = Vector2(1350, 40)
 
 [node name="NumKeyboarders" type="HSlider" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" unique_id=1017159093]
 offset_left = 656.0
@@ -125,13 +108,14 @@ offset_left = 623.0
 offset_top = 174.0
 offset_right = 663.0
 offset_bottom = 202.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "0"
 
 [node name="Leave_Object" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" unique_id=186356019 instance=ExtResource("3_h2yge")]
 z_index = 1
-position = Vector2(960, 1080)
-platform_shape = Vector2(1920, 80)
+position = Vector2(1845, 1096)
+platform_shape = Vector2(150, 80)
 dangerous = true
 
 [node name="RemoveAllPlayers" type="Button" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" unique_id=2086212705]
@@ -141,93 +125,6 @@ offset_right = 1703.0
 offset_bottom = 199.0
 text = "Remove All Players"
 
-[node name="blue_platform" type="RigidBody2D" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" unique_id=2067108454]
-position = Vector2(75, 600)
-gravity_scale = 0.0
-freeze = true
-
-[node name="ColorRect" type="ColorRect" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/blue_platform" unique_id=3190595]
-offset_left = -75.0
-offset_top = -20.0
-offset_right = 75.0
-offset_bottom = 20.0
-color = Color(0.14097607, 0.2636247, 0.767502, 1)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/blue_platform" unique_id=661953152]
-visible = false
-shape = SubResource("RectangleShape2D_272bh")
-
-[node name="red_platform" type="RigidBody2D" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" unique_id=214587542]
-position = Vector2(300, 450)
-gravity_scale = 0.0
-freeze = true
-
-[node name="ColorRect" type="ColorRect" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/red_platform" unique_id=397433616]
-offset_left = -75.0
-offset_top = -20.0
-offset_right = 75.0
-offset_bottom = 20.0
-color = Color(0.9963998, 0, 0.15862107, 1)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/red_platform" unique_id=1050236433]
-visible = false
-shape = SubResource("RectangleShape2D_5vw27")
-
-[node name="green_platform" type="RigidBody2D" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" unique_id=39608777]
-position = Vector2(1845, 600)
-gravity_scale = 0.0
-freeze = true
-
-[node name="ColorRect" type="ColorRect" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/green_platform" unique_id=74334779]
-offset_left = -75.0
-offset_top = -20.0
-offset_right = 75.0
-offset_bottom = 20.0
-color = Color(0.3094347, 0.8384639, 0.18490392, 1)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/green_platform" unique_id=1446390190]
-visible = false
-shape = SubResource("RectangleShape2D_kek77")
-
-[node name="white_platform" type="RigidBody2D" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" unique_id=1198127059]
-position = Vector2(1620, 450)
-gravity_scale = 0.0
-freeze = true
-
-[node name="ColorRect" type="ColorRect" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/white_platform" unique_id=2081442494]
-offset_left = -75.0
-offset_top = -20.0
-offset_right = 75.0
-offset_bottom = 20.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/white_platform" unique_id=105382364]
-visible = false
-shape = SubResource("RectangleShape2D_4c57u")
-
-[node name="blue" type="Area2D" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" unique_id=1798169139]
-position = Vector2(75, 570)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/blue" unique_id=671324961]
-shape = SubResource("RectangleShape2D_h2yge")
-
-[node name="red" type="Area2D" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" unique_id=1964668147]
-position = Vector2(300, 420)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/red" unique_id=609819922]
-shape = SubResource("RectangleShape2D_1bvp3")
-
-[node name="green" type="Area2D" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" unique_id=1503243313]
-position = Vector2(1845, 570)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/green" unique_id=1988480036]
-shape = SubResource("RectangleShape2D_lquwl")
-
-[node name="white" type="Area2D" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" unique_id=371001477]
-position = Vector2(1620, 420)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/white" unique_id=219223314]
-shape = SubResource("RectangleShape2D_7mycd")
-
 [node name="back_to_main" type="Button" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" unique_id=1814593687]
 offset_left = 139.0
 offset_top = 107.0
@@ -235,6 +132,134 @@ offset_right = 255.0
 offset_bottom = 138.0
 theme_override_font_sizes/font_size = 40
 text = "Confirm"
+
+[node name="Floor" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" unique_id=1505479607 instance=ExtResource("3_h2yge")]
+position = Vector2(960, 1080)
+platform_shape = Vector2(1920, 40)
+preset = "floor"
+
+[node name="left_wall" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" unique_id=891642761 instance=ExtResource("3_h2yge")]
+position = Vector2(0, 540)
+platform_shape = Vector2(40, 1080)
+preset = "left_wall"
+
+[node name="right_wall" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" unique_id=2033870253 instance=ExtResource("3_h2yge")]
+position = Vector2(1920, 540)
+platform_shape = Vector2(40, 1080)
+preset = "right_wall"
+
+[node name="ceiling" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" unique_id=1120632574 instance=ExtResource("3_h2yge")]
+position = Vector2(960, 0)
+platform_shape = Vector2(1920, 40)
+preset = "ceiling"
+
+[node name="white" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" unique_id=1142762241 instance=ExtResource("3_h2yge")]
+position = Vector2(360, 906)
+platform_shape = Vector2(150, 20)
+colorr = Vector4i(255, 255, 255, 255)
+
+[node name="white2" type="Area2D" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/white" unique_id=371001477]
+position = Vector2(0, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/white/white2" unique_id=219223314]
+shape = SubResource("RectangleShape2D_7mycd")
+
+[node name="blue" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" unique_id=2033152953 instance=ExtResource("3_h2yge")]
+position = Vector2(510, 906)
+platform_shape = Vector2(150, 20)
+colorr = Vector4i(134, 226, 255, 255)
+
+[node name="blue2" type="Area2D" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/blue" unique_id=1798169139]
+position = Vector2(0, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/blue/blue2" unique_id=671324961]
+shape = SubResource("RectangleShape2D_h2yge")
+
+[node name="red" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" unique_id=443762426 instance=ExtResource("3_h2yge")]
+position = Vector2(660, 906)
+platform_shape = Vector2(150, 20)
+colorr = Vector4i(255, 191, 197, 255)
+
+[node name="red2" type="Area2D" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/red" unique_id=786602585]
+position = Vector2(0, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/red/red2" unique_id=2068945435]
+shape = SubResource("RectangleShape2D_h2yge")
+
+[node name="green" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" unique_id=1913041757 instance=ExtResource("3_h2yge")]
+position = Vector2(810, 906)
+platform_shape = Vector2(150, 20)
+colorr = Vector4i(132, 251, 179, 255)
+
+[node name="green2" type="Area2D" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/green" unique_id=1729600958]
+position = Vector2(0, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/green/green2" unique_id=1781983285]
+shape = SubResource("RectangleShape2D_h2yge")
+
+[node name="purple" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" unique_id=307581384 instance=ExtResource("3_h2yge")]
+position = Vector2(960, 906)
+platform_shape = Vector2(150, 20)
+colorr = Vector4i(222, 188, 255, 255)
+
+[node name="purple2" type="Area2D" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/purple" unique_id=421861698]
+position = Vector2(0, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/purple/purple2" unique_id=1843345772]
+shape = SubResource("RectangleShape2D_h2yge")
+
+[node name="pink" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" unique_id=1628916812 instance=ExtResource("3_h2yge")]
+position = Vector2(1110, 906)
+platform_shape = Vector2(150, 20)
+colorr = Vector4i(255, 207, 248, 255)
+
+[node name="pink2" type="Area2D" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/pink" unique_id=1483607544]
+position = Vector2(0, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/pink/pink2" unique_id=2116760503]
+shape = SubResource("RectangleShape2D_h2yge")
+
+[node name="orange" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" unique_id=1411073639 instance=ExtResource("3_h2yge")]
+position = Vector2(1260, 906)
+platform_shape = Vector2(150, 20)
+colorr = Vector4i(255, 194, 150, 255)
+
+[node name="orange2" type="Area2D" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/orange" unique_id=495684691]
+position = Vector2(0, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/orange/orange2" unique_id=91258068]
+shape = SubResource("RectangleShape2D_h2yge")
+
+[node name="yellow" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" unique_id=111127195 instance=ExtResource("3_h2yge")]
+position = Vector2(1410, 906)
+platform_shape = Vector2(150, 20)
+colorr = Vector4i(251, 255, 140, 255)
+
+[node name="yellow2" type="Area2D" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/yellow" unique_id=206199078]
+position = Vector2(0, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/yellow/yellow2" unique_id=515440960]
+shape = SubResource("RectangleShape2D_h2yge")
+
+[node name="cyan" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" unique_id=1741230686 instance=ExtResource("3_h2yge")]
+position = Vector2(1560, 906)
+platform_shape = Vector2(150, 20)
+colorr = Vector4i(132, 250, 218, 255)
+
+[node name="cyan2" type="Area2D" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/cyan" unique_id=75831543]
+position = Vector2(0, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/cyan/cyan2" unique_id=889515622]
+shape = SubResource("RectangleShape2D_h2yge")
+
+[node name="color_dir" type="Label" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" unique_id=2137656925]
+offset_left = 862.0
+offset_top = 1013.0
+offset_right = 1059.0
+offset_bottom = 1041.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Jump to obtain color"
 
 [connection signal="pressed" from="HUD/Tag" to="." method="game_mode_chosen" binds= ["tag"]]
 [connection signal="pressed" from="HUD/FreePlay" to="." method="game_mode_chosen" binds= ["free_play"]]
@@ -244,8 +269,13 @@ text = "Confirm"
 [connection signal="pressed" from="HUD/Settings" to="." method="settings"]
 [connection signal="value_changed" from="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/NumKeyboarders" to="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" method="num_keyboard_players_changed"]
 [connection signal="pressed" from="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/RemoveAllPlayers" to="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" method="remove_all_players"]
-[connection signal="body_entered" from="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/blue" to="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" method="color_change" binds= ["blue"]]
-[connection signal="body_entered" from="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/red" to="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" method="color_change" binds= ["red"]]
-[connection signal="body_entered" from="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/green" to="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" method="color_change" binds= ["green"]]
-[connection signal="body_entered" from="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/white" to="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" method="color_change" binds= ["white"]]
 [connection signal="pressed" from="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/back_to_main" to="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" method="back_to_main"]
+[connection signal="body_entered" from="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/white/white2" to="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" method="color_change" binds= ["white"]]
+[connection signal="body_entered" from="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/blue/blue2" to="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" method="color_change" binds= ["blue"]]
+[connection signal="body_entered" from="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/red/red2" to="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" method="color_change" binds= ["red"]]
+[connection signal="body_entered" from="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/green/green2" to="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" method="color_change" binds= ["green"]]
+[connection signal="body_entered" from="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/purple/purple2" to="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" method="color_change" binds= ["purple"]]
+[connection signal="body_entered" from="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/pink/pink2" to="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" method="color_change" binds= ["pink"]]
+[connection signal="body_entered" from="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/orange/orange2" to="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" method="color_change" binds= ["orange"]]
+[connection signal="body_entered" from="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/yellow/yellow2" to="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" method="color_change" binds= ["yellow"]]
+[connection signal="body_entered" from="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/cyan/cyan2" to="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" method="color_change" binds= ["cyan"]]

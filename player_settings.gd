@@ -116,3 +116,4 @@ func back_to_main() -> void:
 		players[key].set_process(false)
 
 	main.exit_settings(devices, colors)
+

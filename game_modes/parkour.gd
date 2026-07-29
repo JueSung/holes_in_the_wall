@@ -15,6 +15,9 @@ var current_checkpoint = null # null means go back to start
 
 var cameraPath = null
 
+var timer := 0.0
+var timer_lock := true
+
 func player_setup_information(devices_, colors_):
 	$Player.set_device_num(devices_[0]) # handles setting input set
 	$Player.set_color(colors_[devices_[0]])
@@ -60,9 +63,11 @@ func level_selected(name_: String) -> void:
 			child.body_entered.connect(checkpoint_entered.bind(child))
 		if child.name == "CameraPath":
 			cameraPath = map.get_node("CameraPath") # may be null
-		
-
 	
+	
+	timer = 0.0
+	timer_lock = false
+	$GameHUD/Timer.text = "%.3f" % timer
 
 # places player at starting position, for getting reset/starting
 func place_player():
@@ -92,13 +97,18 @@ func checkpoint_entered(body, checkpoint):
 func end_entered(body):
 	if body is Player:
 		# end game
+		timer_lock = true
 		$Player.set_process(false)
 		$Player.reset()
 		$HUD.visible = true
-		$HUD/Title.text = "Hooray you did it!"
+		$HUD/Title.text = "Hooray you did it! Time was:\n%.3f" % timer + " seconds!"
 		$GameHUD.visible = false
 
 
+func _process(delta: float) -> void:
+	if !timer_lock:
+		timer += delta
+		$GameHUD/Timer.text = "%.3f" % timer
 
 
 func _physics_process(delta):
