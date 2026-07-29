@@ -22,35 +22,35 @@ text = "Parkour"
 horizontal_alignment = 1
 
 [node name="1" type="Button" parent="HUD" unique_id=879302536]
-offset_left = 759.0
-offset_top = 377.0
-offset_right = 784.0
-offset_bottom = 427.0
+offset_left = 739.0
+offset_top = 503.0
+offset_right = 764.0
+offset_bottom = 553.0
 theme_override_font_sizes/font_size = 30
 text = "1"
 
 [node name="2" type="Button" parent="HUD" unique_id=1443182007]
-offset_left = 911.0
-offset_top = 367.0
-offset_right = 936.0
-offset_bottom = 417.0
+offset_left = 891.0
+offset_top = 493.0
+offset_right = 964.0
+offset_bottom = 543.0
 theme_override_font_sizes/font_size = 30
 text = "easy
 "
 
 [node name="back_to_main" type="Button" parent="HUD" unique_id=1246056108]
-offset_left = 556.0
-offset_top = 265.0
-offset_right = 678.0
-offset_bottom = 342.0
+offset_left = 536.0
+offset_top = 391.0
+offset_right = 658.0
+offset_bottom = 468.0
 theme_override_font_sizes/font_size = 50
 text = "back"
 
 [node name="intermediate" type="Button" parent="HUD" unique_id=328371658]
-offset_left = 1069.0
-offset_top = 362.0
-offset_right = 1266.0
-offset_bottom = 412.0
+offset_left = 1049.0
+offset_top = 488.0
+offset_right = 1246.0
+offset_bottom = 538.0
 theme_override_font_sizes/font_size = 30
 text = "intermediate"
 
