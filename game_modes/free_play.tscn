@@ -13,8 +13,10 @@ offset_left = 675.0
 offset_top = 200.0
 offset_right = 1246.0
 offset_bottom = 283.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 60
-text = "YO yo what up nerd"
+text = "Free Play"
+horizontal_alignment = 1
 
 [node name="MapSelection" parent="HUD" unique_id=1382551998 instance=ExtResource("2_ojmmc")]
 
@@ -27,19 +29,21 @@ theme_override_font_sizes/font_size = 50
 text = "Start"
 
 [node name="back_to_main" type="Button" parent="HUD" unique_id=1852098867]
-offset_left = 162.0
-offset_top = 80.0
-offset_right = 207.0
-offset_bottom = 111.0
+offset_left = 356.0
+offset_top = 259.0
+offset_right = 432.0
+offset_bottom = 309.0
+theme_override_font_sizes/font_size = 30
 text = "back"
 
 [node name="GameHUD" type="CanvasLayer" parent="." unique_id=34661584]
 
 [node name="back" type="Button" parent="GameHUD" unique_id=1572882525]
-offset_left = 1856.0
-offset_top = 18.0
-offset_right = 1901.0
-offset_bottom = 49.0
+offset_left = 1852.0
+offset_top = 12.0
+offset_right = 1914.0
+offset_bottom = 62.0
+theme_override_font_sizes/font_size = 30
 text = "exit"
 
 [connection signal="pressed" from="HUD/Start" to="." method="start"]

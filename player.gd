@@ -49,6 +49,8 @@ const LAND_SPEED_THRESHOLD := 800. # vertical speed cutoff to run "land" animati
 
 var animatedSprite = null
 
+
+
 # device number
 # -1, -2, ... coorespond to keyboards
 # 0, 1, 2, ... coorespond to controllers

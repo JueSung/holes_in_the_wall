@@ -8,6 +8,18 @@ var camera_location_on_deck = Vector2(1920/2., 1080/2.)
 func player_setup_information(devices, colors):
 	$Player.set_device_num(devices[0]) # handles setting input set
 	$Player.set_color(colors[devices[0]])
+
+	$keyboard1.visible = false
+	$keyboard2.visible = false
+	$keyboard3.visible = false
+	$controller.visible = false
+
+	if devices[0] < 0:
+		# keyboard
+		get_node("keyboard" + str(-1 * devices[0])).visible = true
+	else:
+		# controller
+		$controller.visible = true
 		
 
 

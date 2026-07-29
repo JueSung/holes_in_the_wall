@@ -29,8 +29,9 @@ offset_top = 150.0
 offset_right = 1460.0
 offset_bottom = 250.0
 pivot_offset = Vector2(0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 60
-text = "These are words"
+text = "Tag"
 horizontal_alignment = 1
 
 [node name="Start_Game" type="Button" parent="HUD" unique_id=114124754]

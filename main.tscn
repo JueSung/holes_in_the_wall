@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://isfw8m4u3wti" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://clv473lcrad6y" path="res://player_settings.gd" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://vhqsw8dnxjbh" path="res://object.tscn" id="3_h2yge"]
+[ext_resource type="Texture2D" uid="uid://bctt5rpavhx0g" path="res://sprites/keyboard2.png" id="4_7mycd"]
+[ext_resource type="Texture2D" uid="uid://cpah0i7apnbbd" path="res://sprites/keyboard3.png" id="5_272bh"]
+[ext_resource type="Texture2D" uid="uid://dxyhnpi4w1gv5" path="res://sprites/controller.png" id="6_5vw27"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7mycd"]
 size = Vector2(150, 20)
@@ -10,75 +13,83 @@ size = Vector2(150, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
 size = Vector2(150, 20)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_h2yge"]
+load_path = "res://.godot/imported/keyboard1.png-ededb973f7243d1d5728264468842ae1.ctex"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_272bh"]
+size = Vector2(180, 20)
+
 [node name="Main" type="Node" unique_id=1455378392]
 script = ExtResource("1_ig7tw")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=807961327]
-visible = false
 
 [node name="Title" type="Label" parent="HUD" unique_id=792982399]
-offset_left = 379.0
 offset_top = 133.0
-offset_right = 1688.0
+offset_right = 1920.0
 offset_bottom = 243.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 80
-text = "Choose Game mode or something"
+text = "Choose Game mode"
+horizontal_alignment = 1
 
 [node name="Tag" type="Button" parent="HUD" unique_id=715432679]
-offset_left = 537.0
-offset_top = 307.0
-offset_right = 681.0
-offset_bottom = 425.0
+offset_left = 525.0
+offset_top = 280.0
+offset_right = 669.0
+offset_bottom = 398.0
 theme_override_font_sizes/font_size = 80
 text = "Tag"
 
 [node name="FreePlay" type="Button" parent="HUD" unique_id=245919831]
-offset_left = 751.0
-offset_top = 310.0
-offset_right = 1110.0
-offset_bottom = 428.0
+offset_left = 779.0
+offset_top = 389.0
+offset_right = 1138.0
+offset_bottom = 507.0
 theme_override_font_sizes/font_size = 80
 text = "Free Play"
 
 [node name="Dodge" type="Button" parent="HUD" unique_id=160569346]
-offset_left = 1004.0
-offset_top = 477.0
-offset_right = 1260.0
-offset_bottom = 595.0
+offset_left = 1246.0
+offset_top = 293.0
+offset_right = 1502.0
+offset_bottom = 411.0
 theme_override_font_sizes/font_size = 80
 text = "Dodge"
 
 [node name="Tutorial" type="Button" parent="HUD" unique_id=1287287287]
-offset_left = 1198.0
-offset_top = 313.0
-offset_right = 1508.0
-offset_bottom = 431.0
+offset_left = 1219.0
+offset_top = 507.0
+offset_right = 1529.0
+offset_bottom = 625.0
 theme_override_font_sizes/font_size = 80
 text = "Tutorial"
 
 [node name="Parkour" type="Button" parent="HUD" unique_id=1339808494]
-offset_left = 683.0
-offset_top = 492.0
-offset_right = 754.0
-offset_bottom = 523.0
+offset_left = 454.0
+offset_top = 503.0
+offset_right = 733.0
+offset_bottom = 607.0
+theme_override_font_sizes/font_size = 70
 text = "Parkour"
 
 [node name="Settings" type="Button" parent="HUD" unique_id=1601923279]
-offset_left = 615.0
-offset_top = 613.0
-offset_right = 817.0
-offset_bottom = 690.0
+offset_left = 852.0
+offset_top = 587.0
+offset_right = 1054.0
+offset_bottom = 664.0
 theme_override_font_sizes/font_size = 50
 text = "Settings"
 
 [node name="PlayerSettingsViewportContainer" type="SubViewportContainer" parent="." unique_id=377193909]
+visible = false
 offset_right = 1920.0
 offset_bottom = 1080.0
 
 [node name="SubViewport" type="SubViewport" parent="PlayerSettingsViewportContainer" unique_id=1934197847]
 handle_input_locally = false
 size = Vector2i(1920, 1080)
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="PlayerSettings" type="CanvasLayer" parent="PlayerSettingsViewportContainer/SubViewport" unique_id=215295405]
 script = ExtResource("2_0xm2m")
@@ -117,6 +128,7 @@ z_index = 1
 position = Vector2(1845, 1096)
 platform_shape = Vector2(150, 80)
 dangerous = true
+colorr = Vector4i(234, 53, 70, 255)
 
 [node name="RemoveAllPlayers" type="Button" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" unique_id=2086212705]
 offset_left = 1548.0
@@ -137,6 +149,7 @@ text = "Confirm"
 position = Vector2(960, 1080)
 platform_shape = Vector2(1920, 40)
 preset = "floor"
+colorr = Vector4i(72, 88, 109, 255)
 
 [node name="left_wall" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" unique_id=891642761 instance=ExtResource("3_h2yge")]
 position = Vector2(0, 540)
@@ -261,6 +274,62 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "Jump to obtain color"
 
+[node name="keyboard1" type="Sprite2D" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" unique_id=1207960730]
+position = Vector2(597, 508)
+scale = Vector2(0.4, 0.4)
+texture = SubResource("CompressedTexture2D_h2yge")
+
+[node name="keyboard2" type="Sprite2D" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" unique_id=378499512]
+visible = false
+position = Vector2(597, 508)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_7mycd")
+
+[node name="keyboard3" type="Sprite2D" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" unique_id=742450382]
+visible = false
+position = Vector2(597, 508)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("5_272bh")
+
+[node name="controller" type="Sprite2D" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" unique_id=1043755757]
+visible = false
+position = Vector2(500, 500)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("6_5vw27")
+
+[node name="controller choice" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" unique_id=1737324815 instance=ExtResource("3_h2yge")]
+position = Vector2(95, 1100)
+platform_shape = Vector2(200, 80)
+colorr = Vector4i(100, 150, 255, 255)
+
+[node name="Area2D" type="Area2D" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/controller choice" unique_id=1431600936]
+position = Vector2(0, -50)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/controller choice/Area2D" unique_id=2146121299]
+shape = SubResource("RectangleShape2D_272bh")
+
+[node name="controls" type="Label" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" unique_id=1033942843]
+offset_left = 1.0
+offset_top = 968.0
+offset_right = 227.0
+offset_bottom = 1041.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Stand here to view
+your controls"
+horizontal_alignment = 1
+
+[node name="to_leave" type="Label" parent="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" unique_id=1130768001]
+offset_left = 1740.0
+offset_top = 987.0
+offset_right = 1894.0
+offset_bottom = 1046.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Touch to leave
+(controller only)"
+horizontal_alignment = 1
+
 [connection signal="pressed" from="HUD/Tag" to="." method="game_mode_chosen" binds= ["tag"]]
 [connection signal="pressed" from="HUD/FreePlay" to="." method="game_mode_chosen" binds= ["free_play"]]
 [connection signal="pressed" from="HUD/Dodge" to="." method="game_mode_chosen" binds= ["dodge"]]
@@ -279,3 +348,4 @@ text = "Jump to obtain color"
 [connection signal="body_entered" from="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/orange/orange2" to="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" method="color_change" binds= ["orange"]]
 [connection signal="body_entered" from="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/yellow/yellow2" to="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" method="color_change" binds= ["yellow"]]
 [connection signal="body_entered" from="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/cyan/cyan2" to="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" method="color_change" binds= ["cyan"]]
+[connection signal="body_entered" from="PlayerSettingsViewportContainer/SubViewport/PlayerSettings/controller choice/Area2D" to="PlayerSettingsViewportContainer/SubViewport/PlayerSettings" method="show_controls"]

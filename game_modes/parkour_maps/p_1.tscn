@@ -1,9 +1,12 @@
 [gd_scene format=3 uid="uid://087qu8sjby2a"]
 
 [ext_resource type="PackedScene" uid="uid://vhqsw8dnxjbh" path="res://object.tscn" id="1_h5leo"]
+[ext_resource type="Script" uid="uid://dlfjbfoe74oeo" path="res://game_modes/parkour_maps/p_1.gd" id="1_r80oo"]
 [ext_resource type="PackedScene" uid="uid://d18wscmvycgt6" path="res://game_modes/parkour_maps/parkour_end_area.tscn" id="2_2dpr2"]
+[ext_resource type="PackedScene" uid="uid://odb7rfkrvt08" path="res://player.tscn" id="3_1ttxu"]
 
 [node name="p1" type="Node2D" unique_id=1351599166]
+script = ExtResource("1_r80oo")
 
 [node name="StartPlatform" parent="." unique_id=1261709125 instance=ExtResource("1_h5leo")]
 position = Vector2(257, 323)
@@ -15,6 +18,7 @@ position = Vector2(960, 1080)
 platform_shape = Vector2(1920, 40)
 dangerous = true
 preset = "floor"
+colorr = Vector4i(234, 53, 70, 255)
 
 [node name="Ceiling" parent="." unique_id=1275567727 instance=ExtResource("1_h5leo")]
 z_index = 1
@@ -22,6 +26,7 @@ position = Vector2(960, 0)
 platform_shape = Vector2(1920, 40)
 dangerous = true
 preset = "ceiling"
+colorr = Vector4i(234, 53, 70, 255)
 
 [node name="LeftWall" parent="." unique_id=1593094874 instance=ExtResource("1_h5leo")]
 z_index = 1
@@ -29,6 +34,7 @@ position = Vector2(0, 540)
 platform_shape = Vector2(40, 1080)
 dangerous = true
 preset = "left_wall"
+colorr = Vector4i(234, 53, 70, 255)
 
 [node name="RightWall" parent="." unique_id=925730981 instance=ExtResource("1_h5leo")]
 z_index = 1
@@ -36,6 +42,7 @@ position = Vector2(1920, 540)
 platform_shape = Vector2(40, 1080)
 dangerous = true
 preset = "right_wall"
+colorr = Vector4i(234, 53, 70, 255)
 
 [node name="Parkour_end_area" parent="." unique_id=1267198524 instance=ExtResource("2_2dpr2")]
 position = Vector2(1653, 438)
@@ -57,3 +64,26 @@ position = Vector2(1193, 528)
 [node name="Object4" parent="." unique_id=2140724366 instance=ExtResource("1_h5leo")]
 position = Vector2(1193, 271)
 platform_shape = Vector2(40, 500)
+
+[node name="Label" type="Label" parent="." unique_id=1520672684]
+offset_left = 237.0
+offset_top = 771.0
+offset_right = 1006.0
+offset_bottom = 861.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "You can jump in the middle of a dash to end it early...
+
+This also means you can jump at the end of the dash to get some more distance"
+
+[node name="Player" parent="." unique_id=1196465888 instance=ExtResource("3_1ttxu")]
+z_index = 0
+position = Vector2(481, 583)
+
+[node name="Player2" parent="." unique_id=616293136 instance=ExtResource("3_1ttxu")]
+z_index = 0
+position = Vector2(662, 655)
+
+[node name="Player3" parent="." unique_id=1810883362 instance=ExtResource("3_1ttxu")]
+z_index = 0
+position = Vector2(723, 531)

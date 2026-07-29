@@ -58,7 +58,7 @@ func level_selected(name_: String) -> void:
 	
 	for child in map.get_children():
 		if "Checkpoint" in child.name:
-			child.get_node("ColorRect").color = Color8(255, 0, 0, 118)
+			child.get_node("ColorRect").color = Color8(100, 100, 100, 180)
 			checkpoints[child] = int(str(child.name)[10]) # should be number
 			child.body_entered.connect(checkpoint_entered.bind(child))
 		if child.name == "CameraPath":
@@ -92,7 +92,7 @@ func checkpoint_entered(body, checkpoint):
 	if body is Player:
 		if !current_checkpoint || checkpoints[checkpoint] > checkpoints[current_checkpoint]:
 			current_checkpoint = checkpoint
-			checkpoint.get_node("ColorRect").color = Color8(66, 230, 252, 118)
+			checkpoint.get_node("ColorRect").color = Color8(66, 230, 252, 180)
 
 func end_entered(body):
 	if body is Player:
