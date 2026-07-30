@@ -21,6 +21,7 @@ position = Vector2(960, 540)
 rotation = 0.0004512635
 
 [node name="Camera2D" type="Camera2D" parent="CameraPath/PathFollow2D" unique_id=965279839]
+ignore_rotation = false
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
 drag_horizontal_enabled = true
@@ -42,6 +43,7 @@ z_index = 1
 position = Vector2(744, 591)
 platform_shape = Vector2(40, 30)
 dangerous = true
+colorr = Vector4i(234, 53, 70, 255)
 
 [node name="Object3" parent="." unique_id=1356665027 instance=ExtResource("1_25o7n")]
 position = Vector2(1072, 716)
@@ -52,18 +54,21 @@ z_index = 1
 position = Vector2(1072, 591)
 platform_shape = Vector2(40, 30)
 dangerous = true
+colorr = Vector4i(234, 53, 70, 255)
 
 [node name="Floor" parent="." unique_id=361501947 instance=ExtResource("1_25o7n")]
 z_index = 1
 position = Vector2(3500, 1080)
 platform_shape = Vector2(7000, 40)
 dangerous = true
+colorr = Vector4i(234, 53, 70, 255)
 
 [node name="Ceiling" parent="." unique_id=1802942836 instance=ExtResource("1_25o7n")]
 z_index = 1
 position = Vector2(1450, 0)
 platform_shape = Vector2(2900, 40)
 dangerous = true
+colorr = Vector4i(234, 53, 70, 255)
 
 [node name="Left" parent="." unique_id=1754914944 instance=ExtResource("1_25o7n")]
 z_index = 1
@@ -71,6 +76,7 @@ position = Vector2(0, 540)
 platform_shape = Vector2(40, 1080)
 dangerous = true
 preset = "left_wall"
+colorr = Vector4i(234, 53, 70, 255)
 
 [node name="Object5" parent="." unique_id=1405611459 instance=ExtResource("1_25o7n")]
 position = Vector2(1403, 765)
@@ -84,12 +90,14 @@ z_index = 1
 position = Vector2(1699, 888)
 platform_shape = Vector2(40, 400)
 dangerous = true
+colorr = Vector4i(234, 53, 70, 255)
 
 [node name="Object7" parent="." unique_id=2056260922 instance=ExtResource("1_25o7n")]
 z_index = 1
 position = Vector2(1699, 316)
 platform_shape = Vector2(40, 600)
 dangerous = true
+colorr = Vector4i(234, 53, 70, 255)
 
 [node name="Object8" parent="." unique_id=325825520 instance=ExtResource("1_25o7n")]
 position = Vector2(2561, 824)
@@ -100,12 +108,14 @@ z_index = 1
 position = Vector2(2206, 333)
 platform_shape = Vector2(150, 700)
 dangerous = true
+colorr = Vector4i(234, 53, 70, 255)
 
 [node name="Object10" parent="." unique_id=469426988 instance=ExtResource("1_25o7n")]
 z_index = 1
 position = Vector2(2604, 504)
 platform_shape = Vector2(150, 600)
 dangerous = true
+colorr = Vector4i(234, 53, 70, 255)
 
 [node name="Object11" parent="." unique_id=1263757244 instance=ExtResource("1_25o7n")]
 position = Vector2(2392, 319)
@@ -116,6 +126,7 @@ z_index = 1
 position = Vector2(2838, 122)
 platform_shape = Vector2(150, 1100)
 dangerous = true
+colorr = Vector4i(234, 53, 70, 255)
 
 [node name="Checkpoint2" parent="." unique_id=414319532 instance=ExtResource("1_s7ekg")]
 position = Vector2(2860, 798)
@@ -125,6 +136,7 @@ z_index = 1
 position = Vector2(3240, 234)
 platform_shape = Vector2(150, 900)
 dangerous = true
+colorr = Vector4i(234, 53, 70, 255)
 
 [node name="Object14" parent="." unique_id=20353276 instance=ExtResource("1_25o7n")]
 position = Vector2(3240, 744)
@@ -152,12 +164,14 @@ z_index = 1
 position = Vector2(3154, -431)
 platform_shape = Vector2(500, 100)
 dangerous = true
+colorr = Vector4i(234, 53, 70, 255)
 
 [node name="Object20" parent="." unique_id=2097533334 instance=ExtResource("1_25o7n")]
 z_index = 1
 position = Vector2(3479, 21)
 platform_shape = Vector2(150, 1000)
 dangerous = true
+colorr = Vector4i(234, 53, 70, 255)
 
 [node name="Object21" parent="." unique_id=1929132380 instance=ExtResource("1_25o7n")]
 position = Vector2(3696, 772)
@@ -185,6 +199,7 @@ z_index = 1
 position = Vector2(4500, 0)
 platform_shape = Vector2(1920, 40)
 dangerous = true
+colorr = Vector4i(234, 53, 70, 255)
 
 [node name="Object27" parent="." unique_id=41773441 instance=ExtResource("1_25o7n")]
 position = Vector2(5243, 602)
@@ -199,6 +214,7 @@ z_index = 1
 position = Vector2(6017, 701)
 platform_shape = Vector2(50, 800)
 dangerous = true
+colorr = Vector4i(234, 53, 70, 255)
 
 [node name="Checkpoint4" parent="." unique_id=490466442 instance=ExtResource("1_s7ekg")]
 position = Vector2(5781, 222)
@@ -208,24 +224,28 @@ z_index = 1
 position = Vector2(5906, 257)
 platform_shape = Vector2(50, 150)
 dangerous = true
+colorr = Vector4i(234, 53, 70, 255)
 
 [node name="Object29" parent="." unique_id=1915319052 instance=ExtResource("1_25o7n")]
 z_index = 1
 position = Vector2(6017, 277)
 platform_shape = Vector2(120, 50)
 dangerous = true
+colorr = Vector4i(234, 53, 70, 255)
 
 [node name="Object30" parent="." unique_id=993525542 instance=ExtResource("1_25o7n")]
 z_index = 1
 position = Vector2(6164, 259)
 platform_shape = Vector2(90, 150)
 dangerous = true
+colorr = Vector4i(234, 53, 70, 255)
 
 [node name="Object31" parent="." unique_id=1825765760 instance=ExtResource("1_25o7n")]
 z_index = 1
 position = Vector2(6030, -58)
 platform_shape = Vector2(1200, 200)
 dangerous = true
+colorr = Vector4i(234, 53, 70, 255)
 
 [node name="Object32" parent="." unique_id=1502360258 instance=ExtResource("1_25o7n")]
 position = Vector2(6393, 557)
@@ -238,6 +258,7 @@ z_index = 1
 position = Vector2(6965, 198)
 platform_shape = Vector2(50, 50)
 dangerous = true
+colorr = Vector4i(234, 53, 70, 255)
 
 [node name="Object34" parent="." unique_id=1594881261 instance=ExtResource("1_25o7n")]
 position = Vector2(7254, 539)
@@ -252,6 +273,7 @@ z_index = 1
 position = Vector2(8242, 548)
 platform_shape = Vector2(50, 50)
 dangerous = true
+colorr = Vector4i(234, 53, 70, 255)
 
 [node name="Object37" parent="." unique_id=768647022 instance=ExtResource("1_25o7n")]
 position = Vector2(7034, 434)
@@ -266,18 +288,21 @@ z_index = 1
 position = Vector2(7420, 834)
 platform_shape = Vector2(50, 50)
 dangerous = true
+colorr = Vector4i(234, 53, 70, 255)
 
 [node name="Object40" parent="." unique_id=1958833047 instance=ExtResource("1_25o7n")]
 z_index = 1
 position = Vector2(7626, 514)
 platform_shape = Vector2(50, 50)
 dangerous = true
+colorr = Vector4i(234, 53, 70, 255)
 
 [node name="Object41" parent="." unique_id=1695815941 instance=ExtResource("1_25o7n")]
 z_index = 1
 position = Vector2(7616, 191)
 platform_shape = Vector2(50, 50)
 dangerous = true
+colorr = Vector4i(234, 53, 70, 255)
 
 [node name="Object42" parent="." unique_id=1208468187 instance=ExtResource("1_25o7n")]
 position = Vector2(7752, 838)
@@ -300,6 +325,7 @@ z_index = 1
 position = Vector2(8354, 188)
 platform_shape = Vector2(50, 50)
 dangerous = true
+colorr = Vector4i(234, 53, 70, 255)
 
 [node name="Object47" parent="." unique_id=815233515 instance=ExtResource("1_25o7n")]
 position = Vector2(8742, 883)
@@ -310,6 +336,7 @@ z_index = 1
 position = Vector2(8498, 677)
 platform_shape = Vector2(50, 50)
 dangerous = true
+colorr = Vector4i(234, 53, 70, 255)
 
 [node name="Object49" parent="." unique_id=1213612394 instance=ExtResource("1_25o7n")]
 position = Vector2(8622, 237)
@@ -320,12 +347,14 @@ z_index = 1
 position = Vector2(8719, 0)
 platform_shape = Vector2(4200, 40)
 dangerous = true
+colorr = Vector4i(234, 53, 70, 255)
 
 [node name="Ceiling3" parent="." unique_id=1001379365 instance=ExtResource("1_25o7n")]
 z_index = 1
 position = Vector2(10523, 1080)
 platform_shape = Vector2(7100, 40)
 dangerous = true
+colorr = Vector4i(234, 53, 70, 255)
 
 [node name="Object50" parent="." unique_id=1177589921 instance=ExtResource("1_25o7n")]
 position = Vector2(9071, 712)
@@ -339,6 +368,7 @@ z_index = 1
 position = Vector2(9542, 298)
 platform_shape = Vector2(150, 600)
 dangerous = true
+colorr = Vector4i(234, 53, 70, 255)
 
 [node name="Object52" parent="." unique_id=351719341 instance=ExtResource("1_25o7n")]
 position = Vector2(9627, 523)
@@ -349,6 +379,7 @@ z_index = 1
 position = Vector2(9968, 752)
 platform_shape = Vector2(150, 650)
 dangerous = true
+colorr = Vector4i(234, 53, 70, 255)
 
 [node name="Object54" parent="." unique_id=1045859757 instance=ExtResource("1_25o7n")]
 position = Vector2(10053, 502)
@@ -366,18 +397,21 @@ z_index = 1
 position = Vector2(10854, 197)
 platform_shape = Vector2(110, 400)
 dangerous = true
+colorr = Vector4i(234, 53, 70, 255)
 
 [node name="Object57" parent="." unique_id=162567561 instance=ExtResource("1_25o7n")]
 z_index = 1
 position = Vector2(10929, 805)
 platform_shape = Vector2(260, 580)
 dangerous = true
+colorr = Vector4i(234, 53, 70, 255)
 
 [node name="Object58" parent="." unique_id=833622414 instance=ExtResource("1_25o7n")]
 z_index = 1
 position = Vector2(11034, 511)
 platform_shape = Vector2(50, 150)
 dangerous = true
+colorr = Vector4i(234, 53, 70, 255)
 
 [node name="Object59" parent="." unique_id=300573346 instance=ExtResource("1_25o7n")]
 position = Vector2(11435, 616)
@@ -391,6 +425,7 @@ z_index = 1
 position = Vector2(11498, 32)
 platform_shape = Vector2(80, 1000)
 dangerous = true
+colorr = Vector4i(234, 53, 70, 255)
 
 [node name="Object61" parent="." unique_id=1033837609 instance=ExtResource("1_25o7n")]
 position = Vector2(11695, 204)

@@ -18,6 +18,8 @@ var cameraPath = null
 var timer := 0.0
 var timer_lock := true
 
+var spin := false # whether camera should spin
+
 func player_setup_information(devices_, colors_):
 	$Player.set_device_num(devices_[0]) # handles setting input set
 	$Player.set_color(colors_[devices_[0]])
@@ -64,6 +66,10 @@ func level_selected(name_: String) -> void:
 		if child.name == "CameraPath":
 			cameraPath = map.get_node("CameraPath") # may be null
 	
+	if spin:
+		cameraPath.get_node("PathFollow2D/Camera2D").ignore_rotation = false
+	else:
+		cameraPath.get_node("PathFollow2D/Camera2D").ignore_rotation = true
 	
 	timer = 0.0
 	timer_lock = false
@@ -120,7 +126,7 @@ func _physics_process(delta):
 	if cameraPath:
 		cameraPath.get_node("PathFollow2D").progress = cameraPath.curve.get_closest_offset(cameraPath.to_local($Player.global_position)) #(roundi(cameraPath.curve.get_closest_offset(cameraPath.to_local($Player.global_position))/800)) * 800
 		cameraPath.get_node("PathFollow2D/Camera2D").position = 100 * $Player.velocity.normalized()
-		cameraPath.get_node("PathFollow2D/Camera2D").rotation = cameraPath.get_node("PathFollow2D").progress / 3780. * 4 * PI
+		cameraPath.get_node("PathFollow2D/Camera2D").rotation = cameraPath.get_node("PathFollow2D").progress / cameraPath.curve.get_baked_length() * 4 * PI
 
 
 
@@ -134,3 +140,7 @@ func exit_level() -> void:
 	$HUD/Title.text = "Parkour"
 	$Player.set_physics_process(false)
 	$Player.set_process(false)
+
+
+func _on_spin_toggled(toggled_on: bool) -> void:
+	spin = toggled_on

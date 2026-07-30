@@ -54,6 +54,19 @@ offset_bottom = 538.0
 theme_override_font_sizes/font_size = 30
 text = "intermediate"
 
+[node name="spin" type="CheckButton" parent="HUD" unique_id=1151588326]
+offset_left = 382.0
+offset_top = 199.0
+offset_right = 463.0
+offset_bottom = 230.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "spin"
+
 [node name="Player" parent="." unique_id=1196465888 instance=ExtResource("2_5rc3k")]
 
 [node name="GameHUD" type="CanvasLayer" parent="." unique_id=1085078362]
@@ -77,4 +90,5 @@ text = "0.0"
 [connection signal="pressed" from="HUD/2" to="." method="level_selected" binds= ["long_beginner"]]
 [connection signal="pressed" from="HUD/back_to_main" to="." method="back_to_main"]
 [connection signal="pressed" from="HUD/intermediate" to="." method="level_selected" binds= ["long_intermediate"]]
+[connection signal="toggled" from="HUD/spin" to="." method="_on_spin_toggled"]
 [connection signal="pressed" from="GameHUD/exit" to="." method="exit_level"]
