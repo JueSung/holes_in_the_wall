@@ -11,17 +11,19 @@ var colors := {} # device : color
 # num_players is just len of devices
 var num_keyboarders := 0
 
-@onready var current_visible_controls = $keyboard1
+@onready var current_showing_controls = $Controls/keyboard1
 
 func _ready() -> void:
 	main = get_tree().root.get_node("Main")
 	$NumKeyboarders.value = 1
 	set_process_unhandled_input(false)
 
-	$keyboard1.visible = true
-	$keyboard2.visible = false
-	$keyboard3.visible = false
-	$controller.visible = false
+	$Controls.visible = false
+	$Controls/keyboard1.visible = true
+	$Controls/keyboard2.visible = false
+	$Controls/keyboard3.visible = false
+	$Controls/controller.visible = false
+
 
 
 
@@ -126,14 +128,25 @@ func back_to_main() -> void:
 
 
 
-func show_controls(body: Node2D) -> void:
-	if body is Player:
-		current_visible_controls.visible = false
-		if body.device_num < 0:
-			# keyboard
-			current_visible_controls = get_node("keyboard" + str(-1 * body.device_num))
-			current_visible_controls.visible = true
-		else:
-			# controller
-			current_visible_controls = $controller
-			$controller.visible = true
+
+func show_controls_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		$Controls.show()
+	else:
+		$Controls.hide()
+
+func show_controls(num: int):
+	current_showing_controls.visible = false
+	match num:
+		0:
+			current_showing_controls = $Controls/keyboard1
+			current_showing_controls.visible = true
+		1:
+			current_showing_controls = $Controls/keyboard2
+			current_showing_controls.visible = true
+		2:
+			current_showing_controls = $Controls/keyboard3
+			current_showing_controls.visible = true
+		3:
+			current_showing_controls = $Controls/controller
+			current_showing_controls.visible = true

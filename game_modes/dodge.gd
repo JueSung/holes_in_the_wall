@@ -3,24 +3,61 @@ class_name Dodge
 
 var timer := 0.
 
+
+var devices := []
+var colors := {}
+
+var players = []
+# for multiplayer:
+var alive_players = []
+var winner = null
+#----------------------
+var num_players = 0
+
 var objects = []
 
 
 var spawn_timer := 0.
 
-func player_setup_information(devices, colors):
-	$Player.set_device_num(devices[0]) # handles setting input set
-	$Player.set_color(colors[devices[0]])
+func player_setup_information(devices_, colors_):
+	# do we need this?
+	devices = devices_
+	colors = colors_
+
+	num_players = len(devices_)
+
+
+	# $Player.set_device_num(devices[0]) # handles setting input set
+	# $Player.set_color(colors[devices[0]])
 
 func _ready() -> void:
 	$HUD.visible = true
 	$GameHUD.visible = false
 	set_physics_process(false)
 
-	$Player/Hurtbox.connect("body_entered", player_body_entered)
+	if num_players * 50 > 150:
+		$Map/Platform.platform_shape = Vector2(num_players * 50, 150)
+
+	for i in range(num_players):
+		var player = load("res://player.tscn").instantiate()
+		player.get_node("Hurtbox").body_entered.connect(player_body_entered.bind(player))
+		players.append(player)
+		alive_players.append(player)
+		add_child(player)
+
+		player.set_color(colors[devices[i]])
+		player.set_physics_process(true)
+		player.set_process(true)
+
+		player.set_device_num(devices[i])
 	
-	$Player.set_physics_process(true)
-	$Player.set_process(true)
+		set_player_position(i)
+		
+
+	# $Player/Hurtbox.connect("body_entered", player_body_entered)
+	
+	# $Player.set_physics_process(true)
+	# $Player.set_process(true)
 	
 
 
@@ -29,9 +66,18 @@ func start():
 	$GameHUD.visible = true
 	timer = 0.
 	set_physics_process(true)
-	$Player.global_position = Vector2(960, 650)
-	$Player.reset()
-	$Player.set_physics_process(true)
+	alive_players = players.duplicate()
+	winner = null
+
+	for i in range(len(players)):
+		set_player_position(i)
+		players[i].modulate = Color(1,1,1,1)
+		players[i].reset()
+		players[i].set_physics_process(true)
+		players[i].set_process(true)
+	# $Player.global_position = Vector2(960, 650)
+	# $Player.reset()
+	# $Player.set_physics_process(true)
 	for i in range(len(objects)):
 		if is_instance_valid(objects[i]):
 			objects[i].queue_free()
@@ -65,9 +111,15 @@ func _physics_process(delta: float) -> void:
 		else: # right
 			coll_inst.global_position = Vector2(1920 + 600, num-3120-2280-600)
 		
-		
+		var avg_pos = Vector2.ZERO #average position of all players
+		for j in range(len(alive_players)):
+			avg_pos += players[j].global_position
+		if len(alive_players) > 0:
+			avg_pos /= len(alive_players)
 		# velocity # target at player current position
-		coll_inst.linear_velocity = (randf() * 300 + 150) * ($Player.global_position - coll_inst.global_position + Vector2(randf() * 20-10, randf() * 20-10)).normalized()
+		
+		coll_inst.linear_velocity = (randf() * 300 + 150) * (avg_pos - coll_inst.global_position + Vector2(randf() * 20-10, randf() * 20-10)).normalized()
+		# coll_inst.linear_velocity = (randf() * 300 + 150) * ($Player.global_position - coll_inst.global_position + Vector2(randf() * 20-10, randf() * 20-10)).normalized()
 		coll_inst.angular_velocity = randf() * PI/2. - PI/4.
 		
 		objects.append(coll_inst)
@@ -91,10 +143,15 @@ func _physics_process(delta: float) -> void:
 
 
 func end_game():
-	$HUD/Label.text = "You Died!\nScore: " + str(int(timer)) + " seconds"
+	if num_players == 1:
+		$HUD/Label.text = "You Died!\nTime: %.3f" % timer + " seconds"
+	else:
+		$HUD/Label.text = "Player " + winner.get_color() + " won!\nTime: %.3f" % timer + " seconds"
 	$HUD.visible = true
 	set_physics_process(false)
-	$Player.set_physics_process(false)
+	for i in range(len(players)):
+		players[i].set_physics_process(false)
+	# $Player.set_physics_process(false)
 	for i in range(len(objects)):
 		if is_instance_valid(objects[i]):
 			objects[i].linear_velocity = Vector2.ZERO
@@ -102,7 +159,16 @@ func end_game():
 
 
 
-
+func set_player_position(ind):
+	if ind == -1:
+		return
+	players[ind].global_position = Vector2(960 + 50 * (ind - int(num_players/2.)) + 20 * ((num_players % 2) * -1 + 1), 650)
+	# if num_players * 40 <= 150:
+	# 	for i in range(num_players):
+	# 		players[i].global_position = Vector2()
+	# else: # expanded platform
+	# 	for i in range(num_players):
+	# 		players[i].global_position = Vector2(1920/2., 650 + randf() * 10 - 5) # TODO change
 
 
 
@@ -110,10 +176,21 @@ func end_game():
 func back_to_main():
 	get_parent().back()
 
-func player_body_entered(body: Node) -> void:
+func player_body_entered(body: Node, player) -> void:
 	if body is CustomObject && body.dangerous:
 		if timer == 0.:
 			# just put player back
-			$Player.position = Vector2(960, 650)
+			set_player_position(players.find(player))
+			# $Player.position = Vector2(960, 650)
 		else:
-			end_game()
+			if num_players == 1:
+				end_game()
+			else:
+				player.modulate = Color(1, 1, 1, .5)
+				player.set_physics_process(false)
+				player.set_process(false)
+				alive_players.erase(player)
+				if len(alive_players) == 1:
+					winner = alive_players[0]
+				elif len(alive_players) == 0:
+					end_game()

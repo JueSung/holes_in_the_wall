@@ -135,7 +135,8 @@ func set_color(color_: String):
 	# 	_:
 	# 		print("idk this player color")
 			
-
+func get_color() -> String:
+	return color
 
 # used for taking in inputs
 func _process(_delta):

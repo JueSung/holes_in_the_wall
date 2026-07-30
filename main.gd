@@ -1,6 +1,8 @@
 extends Node
 class_name Main
 
+# possible background colors: dark: 35, 45, 57; light; 254, 255, 240
+
 var player : Player = null # set by ready
 
 var gamemode = null
@@ -9,11 +11,13 @@ var num_players := 0
 var devices := [-1] # device numbers, numbering schemed described in player_settings
 var colors := {-1: "white"} # device_num: strings of color names
 
+
 func _ready():
 	$HUD.visible = true
 	$HUD/Tag.disabled = true
 	$PlayerSettingsViewportContainer.visible = false
 	$HUD/FreePlay.disabled = false
+	$HUD/Dodge.disabled = false
 
 	set_physics_process(false)
 	# set floor
@@ -60,13 +64,11 @@ func exit_settings(devices_: Array, colors_: Dictionary) -> void:
 	num_players = len(devices)
 
 
-	$HUD/Dodge.disabled = false
 	$HUD/Tutorial.disabled = false
 	$HUD/Parkour.disabled = false
 	$HUD/Tag.disabled = false
 	if num_players > 1:
 		# block single player games
-		$HUD/Dodge.disabled = true
 		$HUD/Tutorial.disabled = true
 		$HUD/Parkour.disabled = true
 	else:
@@ -330,4 +332,4 @@ func back():
 
 # func remove_object(obj):
 # 	objects.erase(obj)
-# 	obj.queue_free()
+

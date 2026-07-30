@@ -79,7 +79,7 @@ dangerous = true
 colorr = Vector4i(234, 53, 70, 255)
 
 [node name="Player" parent="." unique_id=1196465888 instance=ExtResource("3_k7ax7")]
-position = Vector2(960, 650)
+position = Vector2(2210, 372)
 
 [connection signal="pressed" from="HUD/back_to_main" to="." method="back_to_main"]
 [connection signal="pressed" from="HUD/Start" to="." method="start"]
