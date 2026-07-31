@@ -112,10 +112,8 @@ text = "Settings"
 
 [node name="PlayerSettingsViewportContainer" type="SubViewportContainer" parent="." unique_id=377193909]
 visible = false
-offset_left = 4.0
-offset_top = -9.0
-offset_right = 1924.0
-offset_bottom = 1071.0
+offset_right = 1920.0
+offset_bottom = 1080.0
 
 [node name="SubViewport" type="SubViewport" parent="PlayerSettingsViewportContainer" unique_id=1934197847]
 handle_input_locally = false
